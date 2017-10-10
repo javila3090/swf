@@ -53,6 +53,7 @@
 <script type="text/javascript" src="{{ asset('assets/js/bootstrap.min.js') }}"></script>
 <script type="text/javascript" src="{{ asset('assets/js/dataTables.bootstrap.min.js') }}"></script>
 <script type="text/javascript" src="{{ asset('assets/js/datatables.min.js') }}"></script>
+<script type="text/javascript" src="{{ asset('assets/js/mask.min.js') }}"></script>
 <script type="text/javascript" src="{{ asset('assets/js/custom.js') }}"></script>
 </body>
 </html>

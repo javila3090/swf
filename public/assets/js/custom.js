@@ -20,37 +20,54 @@ $(document).ready(function(){
 
     });
 
+
+
     $("#open-pay-form").click(function(){
-        var amount = $('input[name=amount]:checked').val();
-        $(".modal-body #amount").val( amount );
-        $("#paymentModal").modal();
+        if ($("#cellphone").val()=='') {
+            $("#cellphone").css("border-color", "#FF0000");
+            $("#cellphone").focus();
+            $("#error_cell_phone").text("* Debe ingresar un número de teléfono válido");
+        }else if(!$("input:radio[name=frecuency]").is(":checked")){
+            $("#error_frecuency").text("* Debe seleccionar una frecuencia");
+        }else if(!$("input:radio[name=amount]").is(":checked")){
+            $("#error_amount").text("* Debe seleccionar una frecuencia");
+        }else{
+            var frecuency = $('input[name=frecuency]:checked').val();
+            var amount = $('input[name=amount]:checked').val();
+            $(".modal-body #amount").html(amount);
+            $("#paymentModal").modal();
+            $("#cellphone").css("border-color", "#2eb82e");
+            $("#error_cell_phone").text("");
+            $("#error_frecuency").text("");
+            $("#error_amount").text("");
+        }
     });
 
-    $("#nombres").focusout(function(){
+    $("#cellphone").focusout(function(){
         if($(this).val()==''){
             $(this).css("border-color", "#FF0000");
             $('#submit').attr('disabled',true);
-            $("#error_name").text("* Debes ingresar tu nombre");
+            $("#error_cell_phone").text("* Debe ingresar un número de teléfono válido");
         }
         else
         {
             $(this).css("border-color", "#2eb82e");
             $('#submit').attr('disabled',false);
-            $("#error_name").text("");
+            $("#error_cell_phone").text("");
 
         }
     });
-    $("#apellidos").focusout(function(){
-        if($(this).val()==''){
+    $("#frecuency").focusout(function(){
+        if(!$(this).is(":checked")){
             $(this).css("border-color", "#FF0000");
             $('#submit').attr('disabled',true);
-            $("#error_lastname").text("* Debes ingresar tu apellido");
+            $("#error_frecuency").text("* Debe seleccionar una frecuencia");
         }
         else
         {
             $(this).css("border-color", "#2eb82e");
             $('#submit').attr('disabled',false);
-            $("#error_lastname").text("");
+            $("#error_frecuency").text("");
         }
     });
     $("#fecha_nac").focusout(function(){
@@ -171,7 +188,11 @@ $(document).ready(function(){
         return false;
     });
 
-
-
-
 });
+
+function fillInput($code_phone){
+    $.mask.definitions['9'] = '';
+    $.mask.definitions['d'] = '[0-9]';
+    var mask=$("#cellphone").mask("+ "+$code_phone+" (ddd)-ddddddd");
+    $("#cellphone").focus();
+}

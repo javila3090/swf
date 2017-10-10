@@ -5,7 +5,7 @@
 
 body {
     font-family: 'Roboto', sans-serif !important;
-    font-size: 14px !important;
+    font-size: 12.5px !important;
     letter-spacing: 1.5px;
     height: 100%;
     margin: 0;
@@ -29,7 +29,9 @@ header.masthead {
     padding-bottom: 50px;
 }
 
-#section-1 {
+/*** Forms ***/
+
+#form-sign-up {
     text-align: center;
     background-color: white;
     background-attachment: scroll;
@@ -38,7 +40,7 @@ header.masthead {
     -o-background-size: cover;
     background-size: cover;
     padding: 20px;
-    min-height: 680px !important;
+    min-height: 680px !important
 }
 
 .form-group{
@@ -65,11 +67,91 @@ header.masthead {
     -kthtml-transition: all 0.1s linear;
     transition: all 0.1s linear;
     border: 2px solid white;
+    padding: 17px;
 }
 
 .signupButton:hover {
     color: gold;
     border-color: gold;
+}
+
+
+@keyframes click-wave {
+    0% {
+        height: 40px;
+        width: 40px;
+        opacity: 0.35;
+        position: relative;
+        -webkit-border-radius: 50%;
+        -moz-border-radius: 50%;
+        border-radius: 50%;
+    }
+    100% {
+        height: 200px;
+        width: 200px;
+        margin-left: -80px;
+        margin-top: -80px;
+        opacity: 0;
+        -webkit-border-radius: 50%;
+        -moz-border-radius: 50%;
+        border-radius: 50%;
+    }
+}
+
+.option-input {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    -ms-appearance: none;
+    -o-appearance: none;
+    appearance: none;
+    position: relative;
+    top: 13.33333px;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    height: 40px;
+    width: 40px;
+    transition: all 0.15s ease-out 0s;
+    background: #cbd1d8;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    display: inline-block;
+    margin-right: 0.5rem;
+    outline: none;
+    position: relative;
+}
+.option-input:hover {
+    background: #9faab7;
+}
+.option-input:checked {
+    background: gold;
+}
+.option-input:checked::before {
+    height: 40px;
+    width: 40px;
+    position: absolute;
+    content: '✔';
+    display: inline-block;
+    font-size: 26.66667px;
+    text-align: center;
+    line-height: 40px;
+}
+.option-input:checked::after {
+    /*-webkit-animation: click-wave 0.30s;
+    -moz-animation: click-wave 0.30s;
+    animation: click-wave 0.30s;*/
+    background: gold;
+    content: '';
+    display: block;
+    position: relative;
+    z-index: 100;
+}
+.option-input {
+    border-radius: 50%;
+}
+.option-input::after {
+    border-radius: 50%;
 }
 
 /*** Tittles ***/
@@ -88,6 +170,10 @@ header.masthead {
     font-size: 127% !important;
     line-height: 130%;
     padding: 2% 2% 2% 2%;
+}
+
+.header-ask{
+    font-size: 18px;
 }
 
 /*** Menu ***/
@@ -117,6 +203,11 @@ header.masthead {
     opacity: 0.25;
     padding-left: 16px;
     padding-right: 16px;
+}
+
+/*** Error labels ***/
+.error{
+    color: red;
 }
 
 /************ MEDIA QUERIES ************/

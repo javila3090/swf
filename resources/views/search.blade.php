@@ -1,3 +1,12 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: Julio
+ * Date: 10/10/2017
+ * Time: 04:01 PM
+ */
+?>
+
 @extends('layouts.app')
 
 @section('content')
@@ -43,7 +52,7 @@
                                                 <button class="btn btn-default dropdown-toggle dropdown-button" type="button" data-toggle="dropdown">
                                                     <span>Country</span> <span class="caret"></span>
                                                 </button>
-                                                <ul class="dropdown-menu" style="max-height: 150px; max-width: 490px; overflow-x: hidden; overflow-y: scroll; cursor: pointer;" role="menu">
+                                                <ul class="dropdown-menu" style="max-height: 150px; overflow-y: scroll; cursor: pointer;" role="menu">
                                                     @foreach($codes as $code)
                                                         <li><a class="phone_code" onclick="fillInput('{{ $code->phonecode }}')">{{ $code->name }} + {{ $code->phonecode }}</a></li>
                                                     @endforeach
@@ -115,7 +124,7 @@
         <div class="modal-dialog">
             <!-- Modal content-->
             <div class="modal-content">
-                <div class="modal-header"> 
+                <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                     <h4 class="modal-title">Payment Details</h4>
                 </div>
