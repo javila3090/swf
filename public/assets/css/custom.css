@@ -1,0 +1,122 @@
+@import url('https://fonts.googleapis.com/css?family=Archivo+Black|Crete+Round|Francois+One|Passion+One');
+@import url('https://fonts.googleapis.com/css?family=PT+Sans:700');
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+
+
+body {
+    font-family: 'Roboto', sans-serif !important;
+    font-size: 14px !important;
+    letter-spacing: 1.5px;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    background-color: black;
+}
+
+
+header.masthead {
+    text-align: center;
+    color: white;
+    background-color: black;
+    background-repeat: no-repeat;
+    background-attachment: scroll;
+    background-position: center center;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    min-height: 100%;
+    padding-bottom: 50px;
+}
+
+#section-1 {
+    text-align: center;
+    background-color: white;
+    background-attachment: scroll;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    padding: 20px;
+    min-height: 680px !important;
+}
+
+.form-group{
+    -moz-border-radius: 0px;
+    -webkit-border-radius: 0px !important;
+}
+
+.signupButton {
+    padding: 15px 50px 15px 50px;
+    background-color: black;
+    border: none;
+    text-decoration: none;
+    font-size: 85%;
+    font-weight: bold;
+    display: inline-block;
+    text-transform: uppercase;
+    margin: 1% auto 2%;
+    display: inline-block;
+    color: #FFFFFF;
+    -webkit-transition: all 0.1s linear;
+    -o-transition: all 0.1s linear;
+    -moz-transition: all 0.1s linear;
+    -ms-transition: all 0.1s linear;
+    -kthtml-transition: all 0.1s linear;
+    transition: all 0.1s linear;
+    border: 2px solid white;
+}
+/*** Tittles ***/
+.header-title{
+    font-family: 'Francois One', sans-serif !important;
+    font-size: 75px !important;
+    color: gold;
+}
+
+.small-title{
+    margin-top: 20px;
+    font-family: 'Francois One', sans-serif !important;
+    text-align: center;
+    color: gold;
+    font-weight: normal;
+    font-size: 127% !important;
+    line-height: 130%;
+    padding: 2% 2% 2% 2%;
+}
+
+/*** Menu ***/
+
+.nav-container {
+    color: white;
+    font-family: 'PT Sans', sans-serif !important;
+    padding: 10px;
+    text-align: center !important;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 20px;
+    margin-top: 30px;
+    letter-spacing: 2.5px;
+}
+
+.nav-container a:hover{
+    border-bottom: 3px solid gold;
+    text-decoration: none;
+}
+
+.nav-container a{
+    color: #FFFFFF !important;
+}
+
+.separator{
+    opacity: 0.25;
+    padding-left: 16px;
+    padding-right: 16px;
+}
+
+/************ MEDIA QUERIES ************/
+
+@media screen and (max-width:769px) {
+    .header-title{
+        font-size: 55px !important;
+    }
+}
