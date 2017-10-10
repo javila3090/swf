@@ -71,32 +71,32 @@
                         <label for="number">How many facts should we send total?</label>
                         <div data-toggle="buttons">
                             <label class="btn btn-default">
-                                <input type="radio" name="options" id="option1" autocomplete="off">
+                                <input type="radio" name="amount" id="option1" autocomplete="off">
                                 <span class="radio-dot"></span>
-                                <span>4 an hour</span>
+                                <span>20 ($5)</span>
                             </label>
 
                             <label class="btn btn-default">
-                                <input type="radio" name="options" id="option2" autocomplete="off">
+                                <input type="radio" name="amount" id="option2" autocomplete="off">
                                 <span class="radio-dot"></span>
-                                <span >2 an hour</span>
+                                <span >16 ($4)</span>
                             </label>
 
                             <label class="btn btn-default">
-                                <input type="radio" name="options" id="option2" autocomplete="off">
+                                <input type="radio" name="amount" id="option3" autocomplete="off">
                                 <span class="radio-dot"></span>
-                                <span>1 an hour</span>
+                                <span>8 ($2)</span>
                             </label>
 
                             <label class="btn btn-default">
-                                <input type="radio" name="options" id="option2" autocomplete="off">
+                                <input type="radio" name="amount" id="option4" autocomplete="off">
                                 <span class="radio-dot"></span>
-                                <span>1 a day</span>
+                                <span>4 ($1)</span>
                             </label>
                         </div>
                         </div>
-                        <button class="btn signupButton" data-toggle="modal" data-target="#paymentModal">Send those facts</button>
                     </form>
+                    <button type="button" class="btn signupButton" id="open-pay-form">Send those facts</button>
                 </div>
             </div>
         </div>
@@ -143,7 +143,7 @@
                             </form>
                         </div>
                     </div>
-                    <a href="#" class="btn btn-primary btn-lg btn-block" role="button">Pagar</a>
+                    <a href="#" class="btn btn-primary btn-lg btn-block" role="button">Pagar <input type="text" id="amount" value=""/></a>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>

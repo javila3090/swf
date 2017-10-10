@@ -1,32 +1,30 @@
 $(document).ready(function(){
     $flag=1;
 
-    $('#personas').DataTable( {
-        "language": {
-            "sProcessing":     "Procesando...",
-            "sLengthMenu":     "Mostrar _MENU_ registros",
-            "sZeroRecords":    "No se encontraron resultados",
-            "sEmptyTable":     "Ningún dato disponible en esta tabla",
-            "sInfo":           "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
-            "sInfoEmpty":      "Mostrando registros del 0 al 0 de un total de 0 registros",
-            "sInfoFiltered":   "(filtrado de un total de _MAX_ registros)",
-            "sInfoPostFix":    "",
-            "sSearch":         "Buscar:",
-            "sUrl":            "",
-            "sInfoThousands":  ",",
-            "sLoadingRecords": "Cargando...",
-            "oPaginate": {
-                "sFirst":    "Primero",
-                "sLast":     "Último",
-                "sNext":     "Siguiente",
-                "sPrevious": "Anterior"
-            },
-            "oAria": {
-                "sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
-                "sSortDescending": ": Activar para ordenar la columna de manera descendente"
-            }
-        }
-    } );
+    $("a[href^='#']").on('click', function(e) {
+        // prevent default anchor click behavior
+        e.preventDefault();
+
+        // store hash
+        var hash = this.hash;
+
+        // animate
+        $('html, body').animate({
+            scrollTop: $(this.hash).offset().top
+        }, 500, function(){
+
+            // when done, add hash to url
+            // (default click behaviour)
+            //window.location.hash = hash;
+        });
+
+    });
+
+    $("#open-pay-form").click(function(){
+        var amount = $('input[name=amount]:checked').val();
+        $(".modal-body #amount").val( amount );
+        $("#paymentModal").modal();
+    });
 
     $("#nombres").focusout(function(){
         if($(this).val()==''){

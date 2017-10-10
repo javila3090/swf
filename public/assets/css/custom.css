@@ -50,7 +50,7 @@ header.masthead {
     padding: 15px 50px 15px 50px;
     background-color: black;
     border: none;
-    text-decoration: none;
+    text-decoration: none !important;
     font-size: 85%;
     font-weight: bold;
     display: inline-block;
@@ -66,6 +66,12 @@ header.masthead {
     transition: all 0.1s linear;
     border: 2px solid white;
 }
+
+.signupButton:hover {
+    color: gold;
+    border-color: gold;
+}
+
 /*** Tittles ***/
 .header-title{
     font-family: 'Francois One', sans-serif !important;
