@@ -123,6 +123,7 @@
                     <div class="panel panel-default">
                         <div class="panel-body">
                             <form role="form">
+                                <input type="hidden" value="" name="" required/>
                                 <!-- Email -->
                                 <div class="form-group">
                                     <div class="input-group">
@@ -152,7 +153,11 @@
                             </form>
                         </div>
                     </div>
-                    <a href="#" class="btn btn-primary btn-lg btn-block" role="button">Pagar <span id="amount"></span>,00 $</a>
+                    <div class="row">
+                        <div class="col-lg-4 col-lg-offset-4 col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3 col-xs-8 col-xs-offset-2">
+                            <button type="submit" class="btn btn-primary btn-lg btn-block">Pagar <span id="amount"></span>,00 $</button>
+                        </div>
+                    </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>

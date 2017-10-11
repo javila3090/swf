@@ -13,7 +13,6 @@ $(document).ready(function(){
         }, 500, function(){
             
         });
-
     });
 
     $("#open-pay-form").click(function(){
@@ -71,6 +70,51 @@ $(document).ready(function(){
             $(this).css({"border-color":"#2eb82e"});
             $('#submit').attr('disabled',false);
             $("#error_email").text("");
+
+        }
+    });
+
+    $("#cardNumber").focusout(function(){
+        if($(this).val()==''){
+            $(this).css("border-color", "#FF0000");
+            $('#submit').attr('disabled',true);
+            $("#error_card_number").text("* Card Number is required");
+        }
+        else
+        {
+            $(this).css({"border-color":"#2eb82e"});
+            $('#submit').attr('disabled',false);
+            $("#error_card_number").text("");
+
+        }
+    });
+
+    $("#cvv").focusout(function(){
+        if($(this).val()==''){
+            $(this).css("border-color", "#FF0000");
+            $('#submit').attr('disabled',true);
+            $("#error_cvv").text("* Code cvv is required");
+        }
+        else
+        {
+            $(this).css({"border-color":"#2eb82e"});
+            $('#submit').attr('disabled',false);
+            $("#error_cvv").text("");
+
+        }
+    });
+
+    $("#expire_date").focusout(function(){
+        if($(this).val()==''){
+            $(this).css("border-color", "#FF0000");
+            $('#submit').attr('disabled',true);
+            $("#error_expire_date").text("* Expire date is required");
+        }
+        else
+        {
+            $(this).css({"border-color":"#2eb82e"});
+            $('#submit').attr('disabled',false);
+            $("#error_expire_date").text("");
 
         }
     });
