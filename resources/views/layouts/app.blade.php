@@ -46,7 +46,7 @@
 @yield('content')
 <!-- /page content -->
 <footer>
-    <p class="text-center">© 2017 Send Star Wars.</p>
+    <p class="text-center" style="color: white;">© 2017 Send Star Wars.</p>
 </footer>
 
 <script type="text/javascript" src="{{ asset('assets/js/jquery-3-1.min.js') }}"></script>
