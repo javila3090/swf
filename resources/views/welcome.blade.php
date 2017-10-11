@@ -43,7 +43,7 @@
                                                 <button class="btn btn-default dropdown-toggle dropdown-button" type="button" data-toggle="dropdown">
                                                     <span>Country</span> <span class="caret"></span>
                                                 </button>
-                                                <ul class="dropdown-menu" style="max-height: 150px; max-width: 490px; overflow-x: hidden; overflow-y: scroll; cursor: pointer;" role="menu">
+                                                <ul class="dropdown-menu cellphone" role="menu">
                                                     @foreach($codes as $code)
                                                         <li><a class="phone_code" onclick="fillInput('{{ $code->phonecode }}')">{{ $code->name }} + {{ $code->phonecode }}</a></li>
                                                     @endforeach

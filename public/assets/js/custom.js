@@ -123,3 +123,7 @@ function fillInput($code_phone){
     var mask=$("#cellphone").mask("+ "+$code_phone+" (ddd)-ddddddd");
     $("#cellphone").focus();
 }
+
+function myFunction(x) {
+    x.classList.toggle("change");
+}

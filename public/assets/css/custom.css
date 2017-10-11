@@ -29,6 +29,11 @@ header.masthead {
     padding-bottom: 50px;
 }
 
+. icon-bar{
+    color:white !important;
+    background-color: white !important;
+}
+
 #section-wrap {
     text-align: center;
     background-color: white;
@@ -59,6 +64,14 @@ header.masthead {
     margin-top: 60px !important;
 }
 
+.cellphone{
+    max-height: 150px;
+    max-width: 490px;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    cursor: pointer;
+}
+
 .form-group{
     -moz-border-radius: 0px;
     -webkit-border-radius: 0px !important;
@@ -69,7 +82,7 @@ header.masthead {
     background-color: black;
     border: none;
     text-decoration: none !important;
-    font-size: 85%;
+    font-size: 95%;
     font-weight: bold;
     display: inline-block;
     text-transform: uppercase;
@@ -205,7 +218,6 @@ header.masthead {
     margin-top: 30px;
     letter-spacing: 2.5px;
 }
-
 .nav-container a:hover{
     border-bottom: 3px solid gold;
     text-decoration: none;
@@ -214,11 +226,20 @@ header.masthead {
 .nav-container a{
     color: #FFFFFF !important;
 }
-
 .separator{
     opacity: 0.25;
     padding-left: 16px;
     padding-right: 16px;
+}
+.icon-bar{
+    background-color: gold !important;
+}
+.navbar-toggle:hover{
+    background-color: #8c8c8c !important;
+}
+.active{
+    border-bottom: 3px solid gold;
+    text-decoration: none;
 }
 
 /*** Error labels ***/
@@ -231,5 +252,21 @@ header.masthead {
 @media screen and (max-width:769px) {
     .header-title{
         font-size: 55px !important;
+    }
+    .nav-container {
+        font-size: 16px;
+        padding: 5px;
+    }
+    .separator{
+        opacity: 0.25;
+        padding-left: 0px;
+        padding-right: 0px;
+    }
+    .cellphone{
+        max-height: 150px;
+        max-width: 260px;
+        overflow-x: scroll;
+        overflow-y: scroll;
+        cursor: pointer;
     }
 }

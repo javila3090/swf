@@ -10,7 +10,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>Star Wars Facts </title>
     <link rel="shortcut icon" href="{{ asset('favicon.ico') }}">
-    <link rel="stylesheet" href="{{ URL::asset('assets/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ URL::asset('assets/css/app.css') }}">
     <link rel="stylesheet" href="{{ URL::asset('assets/css/datatables.min.css') }}">
     <link rel="stylesheet" href="{{ URL::asset('assets/css/custom.css') }}">
     <!-- scripts -->
@@ -35,18 +35,18 @@
         </button>
     </div>
     <div class="navbar-collapse collapse">
-        <span class="nav-item"><a class="nav-link" href="/">Send</a></span>
+        <span class="nav-item"><a class="nav-link {{ Request::is('/') ? 'active' : '' }}" href="/">Send</a></span>
         <span class="separator">|</span>
-        <span class="nav-item"><a class="nav-link" href="/search">Responses</a></span>
+        <span class="nav-item"><a class="nav-link {{ Request::is('search') ? 'active' : '' }}" href="/search">Responses</a></span>
         <span class="separator">|</span>
-        <span class="nav-item"><a class="nav-link nav-link-active" href="/facts">Facts</a></span>
+        <span class="nav-item"><a class="nav-link {{ Request::is('/facts') ? 'active' : '' }}" href="/facts">Facts</a></span>
     </div><!--/.nav-collapse -->
 </div>
 <!-- page content -->
 @yield('content')
 <!-- /page content -->
 <footer>
-    <p class="text-center" style="padding: 5px; color: white">© 2017 Send Star Wars.</p>
+    <p class="text-center">© 2017 Send Star Wars.</p>
 </footer>
 
 <script type="text/javascript" src="{{ asset('assets/js/jquery-3-1.min.js') }}"></script>
