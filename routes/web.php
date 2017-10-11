@@ -15,3 +15,8 @@ Route::get('/', [
     'as' => '/',
     'uses' => 'FactsController@index'
 ]);
+
+Route::get('search', [
+    'as' => 'search',
+    'uses' => 'FactsController@search'
+]);

@@ -1,5 +1,4 @@
 $(document).ready(function(){
-    $flag=1;
 
     $("a[href^='#']").on('click', function(e) {
         // prevent default anchor click behavior
@@ -12,25 +11,20 @@ $(document).ready(function(){
         $('html, body').animate({
             scrollTop: $(this.hash).offset().top
         }, 500, function(){
-
-            // when done, add hash to url
-            // (default click behaviour)
-            //window.location.hash = hash;
+            
         });
 
     });
-
-
 
     $("#open-pay-form").click(function(){
         if ($("#cellphone").val()=='') {
             $("#cellphone").css("border-color", "#FF0000");
             $("#cellphone").focus();
-            $("#error_cell_phone").text("* Debe ingresar un número de teléfono válido");
+            $("#error_cell_phone").text("* Phone number is required");
         }else if(!$("input:radio[name=frecuency]").is(":checked")){
-            $("#error_frecuency").text("* Debe seleccionar una frecuencia");
+            $("#error_frecuency").text("* Frecuency is required");
         }else if(!$("input:radio[name=amount]").is(":checked")){
-            $("#error_amount").text("* Debe seleccionar una frecuencia");
+            $("#error_amount").text("* Amount is required");
         }else{
             var frecuency = $('input[name=frecuency]:checked').val();
             var amount = $('input[name=amount]:checked').val();
@@ -44,10 +38,17 @@ $(document).ready(function(){
     });
 
     $("#cellphone").focusout(function(){
+        $pho =$("#cellphone").val();
         if($(this).val()==''){
             $(this).css("border-color", "#FF0000");
             $('#submit').attr('disabled',true);
-            $("#error_cell_phone").text("* Debe ingresar un número de teléfono válido");
+            $("#error_cell_phone").text("* Phone number is required");
+        }
+        else if(!$.isNumeric($pho))
+        {
+            $(this).css("border-color", "#FF0000");
+            $('#submit').attr('disabled',true);
+            $("#error_phone").text("* Phone number must be numeric");
         }
         else
         {
@@ -57,74 +58,12 @@ $(document).ready(function(){
 
         }
     });
-    $("#frecuency").focusout(function(){
-        if(!$(this).is(":checked")){
-            $(this).css("border-color", "#FF0000");
-            $('#submit').attr('disabled',true);
-            $("#error_frecuency").text("* Debe seleccionar una frecuencia");
-        }
-        else
-        {
-            $(this).css("border-color", "#2eb82e");
-            $('#submit').attr('disabled',false);
-            $("#error_frecuency").text("");
-        }
-    });
-    $("#fecha_nac").focusout(function(){
-        if($(this).val()==''){
-            $(this).css("border-color", "#FF0000");
-            $('#submit').attr('disabled',true);
-            $("#error_dob").text("* Debes ingresar tu fecha de nacimiento");
-        }
-        else
-        {
-            $(this).css("border-color", "#2eb82e");
-            $('#submit').attr('disabled',false);
-            $("#error_dob").text("");
-            $.ajax({
-                url: "/calcular/{fecha}",
-                type: "GET",
-                data: { fecha: $(this).val() },
-                success : function( data ) {
-                    $("#edad").val(data);
-                },
-                error   : function( xhr, err ) {
-                    console.log(err);
-                }
-            });
-        }
-    });
-    $("#genero").focusout(function(){
-        $(this).css("border-color", "#2eb82e");
-
-    });
-
-    $("#telefono").focusout(function(){
-        $pho =$("#telefono").val();
-        if($(this).val()==''){
-            $(this).css("border-color", "#FF0000");
-            $('#submit').attr('disabled',true);
-            $("#error_phone").text("* Debes ingresar un número de teléfono");
-        }
-        else if(!$.isNumeric($pho))
-        {
-            $(this).css("border-color", "#FF0000");
-            $('#submit').attr('disabled',true);
-            $("#error_phone").text("* El número de teléfono debe ser numérico");
-        }
-        else{
-            $(this).css({"border-color":"#2eb82e"});
-            $('#submit').attr('disabled',false);
-            $("#error_phone").text("");
-        }
-
-    });
 
     $("#email").focusout(function(){
         if($(this).val()==''){
             $(this).css("border-color", "#FF0000");
             $('#submit').attr('disabled',true);
-            $("#error_email").text("* Debes ingresar un email válido");
+            $("#error_email").text("* Email is required");
         }
         else
         {
@@ -137,41 +76,29 @@ $(document).ready(function(){
 
     $("#registroForm").submit(function(event) {
         event.preventDefault();
-        if($("#nombres" ).val()=='')
+        if($("#cardNumber" ).val()=='')
         {
-            $("#nombres").css("border-color", "#FF0000");
+            $("#cardNumber").css("border-color", "#FF0000");
             $('#submit').attr('disabled',true);
-            $("#error_name").text("* Debe ingresar su nombre");
+            $("#error_cvv").text("* Card number is required");
         }
-        if($("#apellidos" ).val()=='')
+        if($("#date" ).val()=='')
         {
-            $("#apellidos").css("border-color", "#FF0000");
+            $("#date").css("border-color", "#FF0000");
             $('#submit').attr('disabled',true);
-            $("#error_lastname").text("* Debe ingresar su apellido");
+            $("#error_exp_date").text("* Expire date is required");
         }
-        if($("#fecha_nac" ).val()=='')
+        if($("#cvv" ).val()=='')
         {
-            $("#fecha_nac").css("border-color", "#FF0000");
+            $("#cvv").css("border-color", "#FF0000");
             $('#submit').attr('disabled',true);
-            $("#error_dob").text("* Debe ingresar su fecha de nacimiento");
-        }
-        if($("#edad" ).val()=='')
-        {
-            $("#edad").css("border-color", "#FF0000");
-            $('#submit').attr('disabled',true);
-            $("#error_age").text("* Debe ingresar su edad");
+            $("#error_cvv").text("* CVV numbers are required");
         }
         if($("#email" ).val()=='')
         {
             $("#email").css("border-color", "#FF0000");
             $('#submit').attr('disabled',true);
-            $("#error_email").text("* Debe ingresar un email válido");
-        }
-        if($("#telefono" ).val()=='')
-        {
-            $("#telefono").css("border-color", "#FF0000");
-            $('#submit').attr('disabled',true);
-            $("#error_phone").text("* Debe ingresar un número de teléfono");
+            $("#error_email").text("* Email is required");
         }
         $.ajax({
             url: $(this).attr("action"),

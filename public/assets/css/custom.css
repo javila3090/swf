@@ -29,6 +29,18 @@ header.masthead {
     padding-bottom: 50px;
 }
 
+#section-wrap {
+    text-align: center;
+    background-color: white;
+    background-attachment: scroll;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    padding: 20px;
+    min-height: 680px !important
+}
+
 /*** Forms ***/
 
 #form-sign-up {
@@ -43,12 +55,16 @@ header.masthead {
     min-height: 680px !important
 }
 
+.search{
+    margin-top: 60px !important;
+}
+
 .form-group{
     -moz-border-radius: 0px;
     -webkit-border-radius: 0px !important;
 }
 
-.signupButton {
+.swButton {
     padding: 15px 50px 15px 50px;
     background-color: black;
     border: none;
@@ -70,7 +86,7 @@ header.masthead {
     padding: 17px;
 }
 
-.signupButton:hover {
+.swButton:hover {
     color: gold;
     border-color: gold;
 }

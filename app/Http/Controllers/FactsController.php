@@ -11,4 +11,9 @@ class FactsController extends Controller
         $codes = DB::table('phone_codes')->get();
         return \View::make('welcome', compact('codes'));
     }
+
+    public function search(){
+        $codes = DB::table('phone_codes')->get();
+        return \View::make('search', compact('codes'));
+    }
 }

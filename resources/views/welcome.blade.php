@@ -21,7 +21,7 @@
             </div>
             <div class="row">
                 <div class="col-md-4 col-md-offset-4 text-center">
-                    <a class="signupButton" href="#form-sign-up"> SIGN THEM UP NOW!</a>
+                    <a class="swButton" href="#form-sign-up"> SIGN THEM UP NOW!</a>
                 </div>
             </div>
         </div>
@@ -105,7 +105,7 @@
                             </div>
                         </div>
                     </form>
-                    <button type="button" class="btn signupButton" id="open-pay-form">Send those facts</button>
+                    <button type="button" class="btn swButton" id="open-pay-form">Send those facts</button>
                 </div>
             </div>
         </div>
