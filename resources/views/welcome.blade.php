@@ -27,9 +27,25 @@
         </div>
     </header>
     <div id="form-sign-up">
+
         <div class="row">
             <div class="">
                 <div class="col-md-6 col-md-offset-3 jumbotron">
+                    <!-- Flash messages -->
+                    @if ($message = Session::get('success'))
+                        <div class="custom-alerts alert alert-success fade in">
+                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true"></button>
+                            {!! $message !!}
+                        </div>
+                        <?php Session::forget('success');?>
+                    @endif
+                    @if ($message = Session::get('error'))
+                        <div class="custom-alerts alert alert-danger fade in">
+                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true"></button>
+                            {!! $message !!}
+                        </div>
+                        <?php Session::forget('error');?>
+                    @endif
                     <h2><b>SEND SOME FACTS</b></h2>
                     <br>
                     <form>
@@ -122,7 +138,7 @@
                 <div class="modal-body">
                     <div class="panel panel-default">
                         <div class="panel-body">
-                            <form role="form">
+                            <form role="form" id="paymentForm">
                                 <input type="hidden" value="" name="" required/>
                                 <!-- Email -->
                                 <div class="form-group">
@@ -141,7 +157,7 @@
                                 <div class="row">
                                     <div class="col-xs-6 col-md-6 pull-right">
                                         <div class="form-group">
-                                            <input type="text" class="form-control" id="expire_date" placeholder="MM/YY" required />
+                                            <input type="text" class="form-control" id="expire_date" placeholder="Expire date" required />
                                         </div>
                                     </div>
                                     <div class="col-xs-6 col-md-6 pull-right">

@@ -119,7 +119,7 @@ $(document).ready(function(){
         }
     });
 
-    $("#registroForm").submit(function(event) {
+    $("#paymentForm").submit(function(event) {
         event.preventDefault();
         if($("#cardNumber" ).val()=='')
         {

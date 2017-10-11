@@ -20,3 +20,17 @@ Route::get('search', [
     'as' => 'search',
     'uses' => 'FactsController@search'
 ]);
+
+Route::get('facts', [
+    'as' => 'facts',
+    'uses' => 'FactsController@facts'
+]);
+
+/*** PAYPAL ROUTES ***/
+Route::get('paywithpaypal', array('as' => 'addmoney.paywithpaypal','uses' => 'PaymentController@payWithPaypal',));
+Route::post('paypal', array('as' => 'addmoney.paypal','uses' => 'PaymentController@postPaymentWithpaypal',));
+Route::get('paypal', array('as' => 'payment.status','uses' => 'PaymentController@getPaymentStatus',));
+
+/*** STRIPE ROUTES ***/
+Route::get('addmoney/stripe', array('as' => 'addmoney.paywithstripe','uses' => 'AddMoneyController@payWithStripe',));
+Route::post('addmoney/stripe', array('as' => 'addmoney.stripe','uses' => 'AddMoneyController@postPaymentWithStripe',));

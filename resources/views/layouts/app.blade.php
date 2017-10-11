@@ -39,7 +39,7 @@
         <span class="separator">|</span>
         <span class="nav-item"><a class="nav-link {{ Request::is('search') ? 'active' : '' }}" href="/search">Responses</a></span>
         <span class="separator">|</span>
-        <span class="nav-item"><a class="nav-link {{ Request::is('/facts') ? 'active' : '' }}" href="/facts">Facts</a></span>
+        <span class="nav-item"><a class="nav-link {{ Request::is('facts') ? 'active' : '' }}" href="/facts">Facts</a></span>
     </div><!--/.nav-collapse -->
 </div>
 <!-- page content -->
