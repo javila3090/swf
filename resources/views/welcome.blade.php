@@ -140,12 +140,12 @@
                                 <div class="row">
                                     <div class="col-xs-6 col-md-6 pull-right">
                                         <div class="form-group">
-                                            <input type="password" class="form-control" id="expire" placeholder="MM/YY" required />
+                                            <input type="text" class="form-control" id="expire_date" placeholder="MM/YY" required />
                                         </div>
                                     </div>
                                     <div class="col-xs-6 col-md-6 pull-right">
                                         <div class="form-group">
-                                            <input type="password" class="form-control" id="cvCode" placeholder="CVV" required />
+                                            <input type="number" maxlength="3" class="form-control" id="cvv" placeholder="CVV" required />
                                         </div>
                                     </div>
                                 </div>

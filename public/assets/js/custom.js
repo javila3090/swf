@@ -29,6 +29,7 @@ $(document).ready(function(){
             var frecuency = $('input[name=frecuency]:checked').val();
             var amount = $('input[name=amount]:checked').val();
             $(".modal-body #amount").html(amount);
+            $("#expire_date").mask("dd/dd");
             $("#paymentModal").modal();
             $("#cellphone").css("border-color", "#2eb82e");
             $("#error_cell_phone").text("");
@@ -82,9 +83,9 @@ $(document).ready(function(){
             $('#submit').attr('disabled',true);
             $("#error_cvv").text("* Card number is required");
         }
-        if($("#date" ).val()=='')
+        if($("#expire_date" ).val()=='')
         {
-            $("#date").css("border-color", "#FF0000");
+            $("#expire_date").css("border-color", "#FF0000");
             $('#submit').attr('disabled',true);
             $("#error_exp_date").text("* Expire date is required");
         }
@@ -120,10 +121,6 @@ $(document).ready(function(){
 function fillInput($code_phone){
     $.mask.definitions['9'] = '';
     $.mask.definitions['d'] = '[0-9]';
-    var mask=$("#cellphone").mask("+ "+$code_phone+" (ddd)-ddddddd");
+    $("#cellphone").mask("+"+$code_phone+" (ddd)-ddddddd");
     $("#cellphone").focus();
-}
-
-function myFunction(x) {
-    x.classList.toggle("change");
 }

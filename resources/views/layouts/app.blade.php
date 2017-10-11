@@ -10,7 +10,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>Star Wars Facts </title>
     <link rel="shortcut icon" href="{{ asset('favicon.ico') }}">
-    <link rel="stylesheet" href="{{ URL::asset('assets/css/app.css') }}">
+    <link rel="stylesheet" href="{{ URL::asset('assets/css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ URL::asset('assets/css/datatables.min.css') }}">
     <link rel="stylesheet" href="{{ URL::asset('assets/css/custom.css') }}">
     <!-- scripts -->
