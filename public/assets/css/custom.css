@@ -138,8 +138,8 @@ header.masthead {
     right: 0;
     bottom: 0;
     left: 0;
-    height: 40px;
-    width: 40px;
+    height: 30px;
+    width: 30px;
     transition: all 0.15s ease-out 0s;
     background: #cbd1d8;
     border: none;
@@ -157,14 +157,14 @@ header.masthead {
     background: gold;
 }
 .option-input:checked::before {
-    height: 40px;
-    width: 40px;
+    height: 30px;
+    width: 30px;
     position: absolute;
     content: '✔';
     display: inline-block;
-    font-size: 26.66667px;
+    font-size: 19px;
     text-align: center;
-    line-height: 40px;
+    line-height: 30px;
 }
 .option-input:checked::after {
     /*-webkit-animation: click-wave 0.30s;
@@ -247,6 +247,12 @@ header.masthead {
     color: red;
 }
 
+/*** Footer ***/
+
+.footer{
+    color:white !important;
+}
+
 /************ MEDIA QUERIES ************/
 
 @media screen and (max-width:769px) {
@@ -268,5 +274,26 @@ header.masthead {
         overflow-x: scroll;
         overflow-y: scroll;
         cursor: pointer;
+    }
+    .option-input:checked::before {
+        height: 25px;
+        width: 25px;
+        position: absolute;
+        display: inline-block;
+        font-size: 15px;
+        line-height: 25px;
+    }
+    .option-input {
+        height: 25px;
+        width: 25px;
+    }
+    .title-2{
+        font-size: 22px;
+    }
+    .xs-text{
+        font-size: 11px;
+    }
+    .xs-header-text{
+        font-size: 14px;
     }
 }

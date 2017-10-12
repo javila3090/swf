@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class UpdateUsersTableAddApiToken extends Migration
+class CreateQuantityTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,11 @@ class UpdateUsersTableAddApiToken extends Migration
      */
     public function up()
     {
-        //
+        Schema::create('quantity', function (Blueprint $table) {
+            $table->increments('id');
+            $table->integer('quantity');
+            $table->integer('cost');
+        });
     }
 
     /**

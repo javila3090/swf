@@ -11,7 +11,8 @@
         "laravel/tinker": "~1.0",
         "guzzlehttp/guzzle": "~5.2",
         "paypal/rest-api-sdk-php": "*",
-        "cartalyst/stripe-laravel": "2.0.*"
+        "cartalyst/stripe-laravel": "2.0.*",
+        "laravelcollective/html": "^5.4"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

@@ -9,7 +9,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>Star Wars Facts </title>
-    <link rel="shortcut icon" href="{{ asset('favicon.ico') }}">
+    <link rel="shortcut icon" href="{{  URL::asset('assets/images/sw.ico') }}">
     <link rel="stylesheet" href="{{ URL::asset('assets/css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ URL::asset('assets/css/datatables.min.css') }}">
     <link rel="stylesheet" href="{{ URL::asset('assets/css/custom.css') }}">
@@ -45,8 +45,34 @@
 <!-- page content -->
 @yield('content')
 <!-- /page content -->
-<footer>
-    <p class="text-center" style="color: white;">© 2017 Send Star Wars.</p>
+<footer class="container footer">
+    <div class="row">
+        <div class="col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3 col-xs-8 col-xs-offset-2">
+            <p class="small-title" style="font-size: 28px !important;">Common Questions</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-3 col-sm-3 col-xs-6 text-center">
+            <p class="small-title">Is this for real?</p>
+            <p>Yes! Tap here to test it out. We believe everyone should bask in the glory that is Cat Facts!</p>
+        </div>
+        <div class="col-md-3 col-sm-3 col-xs-6 text-center">
+            <p class="small-title">Why does it cost money?</p>
+            <p>Because text messages cost money and we're not paying for you to prank your friends.</p>
+        </div>
+        <div class="col-md-3 col-sm-3 col-xs-6 text-center">
+            <p class="small-title">When will the texts send?</p>
+            <p>All texts are sent out on a fixed schedule, so you may have to wait up to 15 minutes.</p>
+        </div>
+        <div class="col-md-3 col-sm-3 col-xs-6 text-center">
+            <p class="small-title">When will the texts send?</p>
+            <p>All texts are sent out on a fixed schedule, so you may have to wait up to 15 minutes.</p>
+        </div>
+    </div>
+    <br>
+    <div class="row">
+        <p class="text-center" style="color: white;">© 2017 Send Star Wars.</p>
+    </div>
 </footer>
 
 <script type="text/javascript" src="{{ asset('assets/js/jquery-3-1.min.js') }}"></script>

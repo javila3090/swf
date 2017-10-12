@@ -32,5 +32,5 @@ Route::post('paypal', array('as' => 'addmoney.paypal','uses' => 'PaymentControll
 Route::get('paypal', array('as' => 'payment.status','uses' => 'PaymentController@getPaymentStatus',));
 
 /*** STRIPE ROUTES ***/
-Route::get('addmoney/stripe', array('as' => 'addmoney.paywithstripe','uses' => 'AddMoneyController@payWithStripe',));
-Route::post('addmoney/stripe', array('as' => 'addmoney.stripe','uses' => 'AddMoneyController@postPaymentWithStripe',));
+Route::get('addmoney/stripe', array('as' => 'addmoney.paywithstripe','uses' => 'PaymentController@payWithStripe',));
+Route::post('addmoney/stripe', array('as' => 'addmoney.stripe','uses' => 'PaymentController@postPaymentWithStripe',));

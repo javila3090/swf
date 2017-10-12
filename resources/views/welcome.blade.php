@@ -30,7 +30,7 @@
 
         <div class="row">
             <div class="">
-                <div class="col-md-6 col-md-offset-3 jumbotron">
+                <div class="col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1 jumbotron">
                     <!-- Flash messages -->
                     @if ($message = Session::get('success'))
                         <div class="custom-alerts alert alert-success fade in">
@@ -46,18 +46,18 @@
                         </div>
                         <?php Session::forget('error');?>
                     @endif
-                    <h2><b>SEND SOME FACTS</b></h2>
+                    <h2 class="title-2"><b>SEND SOME FACTS</b></h2>
                     <br>
                     <form>
                         <div class="row">
-                            <div class="form-group  col-lg-8 col-lg-offset-2  col-md-10 col-md-offset-1 col-xs-12">
-                                <label for="number" class="header-ask">What cell number should recieve facts?</label>
+                            <div class="form-group  col-lg-8 col-lg-offset-2  col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-12">
+                                <label for="number" class="header-ask xs-header-text">What cell number should receive facts?</label>
                                 <div class="form-group">
                                     <div class="input-group">
                                         <div class="input-group-btn">
                                             <div class="btn-group">
                                                 <button class="btn btn-default dropdown-toggle dropdown-button" type="button" data-toggle="dropdown">
-                                                    <span>Country</span> <span class="caret"></span>
+                                                    <span class="xs-text">Country</span> <span class="caret"></span>
                                                 </button>
                                                 <ul class="dropdown-menu cellphone" role="menu">
                                                     @foreach($codes as $code)
@@ -66,31 +66,31 @@
                                                 </ul>
                                             </div>
                                         </div>
-                                        <input type="text" name="cellphone" id="cellphone" class="form-control" />
+                                        <input type="text" name="cellphone" id="cellphone" class="form-control xs-text" />
                                     </div>
                                 </div>
                                 <label class="error" for="error_cell_phone" id="error_cell_phone"></label>
                             </div>
                         </div>
                         <div class="row">
-                            <div class="form-group  col-lg-10 col-lg-offset-1 col-md-10 col-md-offset-1 col-xs-12">
-                                <label for="frecuency" class="header-ask">How often should they receive Star Wars Facts?</label>
+                            <div class="form-group  col-lg-10 col-lg-offset-1 col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-1 col-xs-12">
+                                <label for="frecuency" class="header-ask xs-header-text">How often should they receive Star Wars Facts?</label>
                                 <div>
                                     <label>
                                         <input type="radio" class="option-input" value="4" name="frecuency" checked />
-                                        <span>4 an hour</span>
+                                        <span class="xs-text">4 an hour</span>
                                     </label>
                                     <label>
                                         <input type="radio" class="option-input" value="2" name="frecuency" />
-                                        <span>2 an hour</span>
+                                        <span class="xs-text">2 an hour</span>
                                     </label>
                                     <label>
                                         <input type="radio" class="option-input" value="1" name="frecuency" />
-                                        <span>1 an hour</span>
+                                        <span class="xs-text">1 an hour</span>
                                     </label>
                                     <label>
                                         <input type="radio" class="option-input" value="124" name="frecuency" />
-                                        <span>1 a day</span>
+                                        <span class="xs-text">1 a day</span>
                                     </label>
                                 </div>
                                 <label class="error" for="error_frecuency" id="error_frecuency"></label>
@@ -98,23 +98,23 @@
                         </div>
                         <div class="row">
                             <div class="form-group col-lg-10 col-lg-offset-1 col-md-10 col-md-offset-1 col-xs-12">
-                                <label for="amount" class="header-ask">How many facts should we send total?</label>
+                                <label for="amount" class="header-ask xs-header-text">How many facts should we send total?</label>
                                 <div>
                                     <label>
-                                        <input type="radio" class="option-input" value="5" name="amount" checked />
-                                        <span>20 ($5)</span>
+                                        <input type="radio" class="option-input" value="20" name="amount" checked />
+                                        <span class="xs-text">20 ($5)</span>
+                                    </label>
+                                    <label>
+                                        <input type="radio" class="option-input" value="16" name="amount" />
+                                        <span class="xs-text">16 ($4)</span>
+                                    </label>
+                                    <label>
+                                        <input type="radio" class="option-input" value="8" name="amount" />
+                                        <span class="xs-text">8 ($2)</span>
                                     </label>
                                     <label>
                                         <input type="radio" class="option-input" value="4" name="amount" />
-                                        <span>16 ($4)</span>
-                                    </label>
-                                    <label>
-                                        <input type="radio" class="option-input" value="2" name="amount" />
-                                        <span>8 ($2)</span>
-                                    </label>
-                                    <label>
-                                        <input type="radio" class="option-input" value="1" name="amount" />
-                                        <span>4 ($1)</span>
+                                        <span class="xs-text">4 ($1)</span>
                                     </label>
                                 </div>
                                 <label class="error" for="error_amount" id="error_amount"></label>
@@ -138,40 +138,46 @@
                 <div class="modal-body">
                     <div class="panel panel-default">
                         <div class="panel-body">
-                            <form role="form" id="paymentForm">
-                                <input type="hidden" value="" name="" required/>
+                            {!! Form::open(['route' => 'addmoney.stripe', 'method' => 'post', 'id' => 'paymentForm1']) !!}
+                                <input type="hidden" value="" name="phone_number" id="phone_number" required/>
+                                <input type="hidden" value="" name="id_frecuency" id="id_frecuency" required/>
+                                <input type="hidden" value="" name="quantity" id="quantity" required/>
                                 <!-- Email -->
                                 <div class="form-group">
                                     <div class="input-group">
                                         <span class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span></span>
-                                        <input type="email" class="form-control" id="email" placeholder="Email" required autofocus />
+                                        <input type="email" class="form-control" name="email" id="email" placeholder="Email" required autofocus />
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <div class="input-group">
                                         <span class="input-group-addon"><span class="glyphicon glyphicon-credit-card"></span></span>
-                                        <input type="number" class="form-control" id="cardNumber" placeholder="Número de tarjeta"
-                                               required autofocus />
+                                        <input type="number" class="form-control" name="cardNumber" id="cardNumber" placeholder="Número de tarjeta" required autofocus />
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-xs-6 col-md-6 pull-right">
+                                    <div class="col-xs-3 col-md-3">
                                         <div class="form-group">
-                                            <input type="text" class="form-control" id="expire_date" placeholder="Expire date" required />
+                                            <input type="text" class="form-control" name="month" id="month" placeholder="Month" required />
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-3 col-md-3">
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" name="year" id="year" placeholder="Year" required />
                                         </div>
                                     </div>
                                     <div class="col-xs-6 col-md-6 pull-right">
                                         <div class="form-group">
-                                            <input type="number" maxlength="3" class="form-control" id="cvv" placeholder="CVV" required />
+                                            <input type="number" maxlength="3" name="cvv" class="form-control" id="cvv" placeholder="CVV" required />
                                         </div>
                                     </div>
                                 </div>
-                            </form>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-lg-4 col-lg-offset-4 col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3 col-xs-8 col-xs-offset-2">
-                            <button type="submit" class="btn btn-primary btn-lg btn-block">Pagar <span id="amount"></span>,00 $</button>
+                                <div class="row">
+                                    <div class="col-lg-4 col-lg-offset-4 col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3 col-xs-8 col-xs-offset-2">
+                                        <button type="submit" class="btn btn-primary btn-lg btn-block">Pay <span id="amount"></span>,00 $</button>
+                                    </div>
+                                </div>
+                            {!! Form::close() !!}
                         </div>
                     </div>
                 </div>

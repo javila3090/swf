@@ -2,11 +2,12 @@
 namespace App\Http\Controllers;
 use App\Http\Requests;
 use Illuminate\Http\Request;
-use Validator;
-use URL;
-use Session;
-use Redirect;
-use Input;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\URL;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\DB;
 /** All Paypal Details class **/
 use PayPal\Rest\ApiContext;
 use PayPal\Auth\OAuthTokenCredential;
@@ -21,9 +22,10 @@ use PayPal\Api\ExecutePayment;
 use PayPal\Api\PaymentExecution;
 use PayPal\Api\Transaction;
 use App\User;
+use App\Order;
 use Cartalyst\Stripe\Laravel\Facades\Stripe;
 
-class PaymentController extends HomeController
+class PaymentController extends Controller
 {
     private $_api_context;
     /**
@@ -33,7 +35,7 @@ class PaymentController extends HomeController
      */
     public function __construct()
     {
-        parent::__construct();
+        //parent::__construct();
 
         /** setup PayPal api context **/
         $paypal_conf = \Config::get('paypal');
@@ -58,60 +60,63 @@ class PaymentController extends HomeController
      */
     public function postPaymentWithStripe(Request $request)
     {
-        $validator = Validator::make($request->all(), [
-            'card_no' => 'required',
-            'expire_date' => 'required',
-            'ccExpiryYear' => 'required',
-            'cvvNumber' => 'required',
-            'amount' => 'required',
-        ]);
-
+        $rules = array(
+            'cardNumber' => 'required',
+            'month' => 'required',
+            'year' => 'required',
+            'cvv' => 'required'
+        );
+        $validator = Validator::make(Input::all(), $rules);
         $input = $request->all();
-        if ($validator->passes()) {
+        if ($validator->fails()) {
+            \Session::put('error', 'All fields are required!!');
+            return redirect()->route('/');
+        }else {
             $input = array_except($input,array('_token'));
-            $stripe = Stripe::make('set here your stripe secret key');
+            $stripe = Stripe::make('sk_test_dsmevhFlECFf8RWRzkvJHlLi');
             try {
                 $token = $stripe->tokens()->create([
                     'card' => [
-                        'number'    => $request->get('card_no'),
-                        'exp_month' => $request->get('ccExpiryMonth'),
-                        'exp_year'  => $request->get('ccExpiryYear'),
-                        'cvc'       => $request->get('cvvNumber'),
+                        'number'    => $request->input('cardNumber'),
+                        'exp_month' => $request->input('month'),
+                        'exp_year'  => $request->input('year'),
+                        'cvc'       => $request->input('cvv'),
                     ],
                 ]);
                 if (!isset($token['id'])) {
                     \Session::put('error','The Stripe Token was not generated correctly');
-                    return redirect()->route('addmoney.paywithstripe');
+                    return redirect()->route('/');
+                }
+                $quantity = DB::table('quantity')->where('quantity', '=', $request->input('quantity'))->limit(1)->get(['cost']);
+                foreach ($quantity as $v){
+                    $cost=$v->cost;
                 }
                 $charge = $stripe->charges()->create([
                     'card' => $token['id'],
                     'currency' => 'USD',
-                    'amount'   => $request->get('amount'),
+                    'amount'   => $cost,
                     'description' => 'Add in wallet',
                 ]);
                 if($charge['status'] == 'succeeded') {
-                    /**
-                     * Write Here Your Database insert logic.
-                     */
-                    \Session::put('success','Money add successfully in wallet');
-                    return redirect()->route('addmoney.paywithstripe');
+                    $order = new Order; // Creando el objeto del modelo
+                    $order -> create($request->all());
+                    \Session::put('success','Pay completed successfully');
+                    return redirect()->route('/');
                 } else {
                     \Session::put('error','Money not add in wallet!!');
-                    return redirect()->route('addmoney.paywithstripe');
+                    return redirect()->route('/');
                 }
             } catch (Exception $e) {
                 \Session::put('error',$e->getMessage());
-                return redirect()->route('addmoney.paywithstripe');
+                return redirect()->route('/');
             } catch(\Cartalyst\Stripe\Exception\CardErrorException $e) {
                 \Session::put('error',$e->getMessage());
-                return redirect()->route('addmoney.paywithstripe');
+                return redirect()->route('/');
             } catch(\Cartalyst\Stripe\Exception\MissingParameterException $e) {
                 \Session::put('error',$e->getMessage());
-                return redirect()->route('addmoney.paywithstripe');
+                return redirect()->route('/');
             }
         }
-        \Session::put('error','All fields are required!!');
-        return redirect()->route('addmoney.paywithstripe');
     }
 
     /**

@@ -25,8 +25,12 @@ $(document).ready(function(){
         }else if(!$("input:radio[name=amount]").is(":checked")){
             $("#error_amount").text("* Amount is required");
         }else{
+            var phone_number = $('input[name=cellphone]').val();
             var frecuency = $('input[name=frecuency]:checked').val();
             var amount = $('input[name=amount]:checked').val();
+            $(".modal-body #phone_number").val(phone_number);
+            $(".modal-body #id_frecuency").val(frecuency);
+            $(".modal-body #quantity").val(amount);
             $(".modal-body #amount").html(amount);
             $("#expire_date").mask("dd/dd");
             $("#paymentModal").modal();
@@ -150,7 +154,7 @@ $(document).ready(function(){
             type: $(this).attr("method"),
             data: $(this).serialize(),
             success : function( data ) {
-                $('#registroForm')[0].reset();
+                $('#paymentForm')[0].reset();
                 $("#resultado").html(data);
             },
             error   : function( xhr, err ) {
