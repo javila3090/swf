@@ -71,7 +71,7 @@
     </div>
     <br>
     <div class="row">
-        <p class="text-center" style="color: white;">© 2017 Send Star Wars.</p>
+        <p class="text-center" style="color: white;">© 2017 Send Star Wars Facts</p>
     </div>
 </footer>
 
