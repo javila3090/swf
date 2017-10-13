@@ -23,15 +23,15 @@ $(document).ready(function(){
         }else if(!$("input:radio[name=frecuency]").is(":checked")){
             $("#error_frecuency").text("* Frecuency is required");
         }else if(!$("input:radio[name=amount]").is(":checked")){
-            $("#error_amount").text("* Amount is required");
+            $("#error_amount").text("* Quantity is required");
         }else{
             var phone_number = $('input[name=cellphone]').val();
             var frecuency = $('input[name=frecuency]:checked').val();
             var amount = $('input[name=amount]:checked').val();
             $(".modal-body #phone_number").val(phone_number);
             $(".modal-body #id_frecuency").val(frecuency);
-            $(".modal-body #quantity").val(amount);
-            $(".modal-body #amount").html(amount);
+            $(".modal-body #amount").val(amount);
+            $(".modal-body #amountSpan").html(amount);
             $("#expire_date").mask("dd/dd");
             $("#paymentModal").modal();
             $("#cellphone").css("border-color", "#2eb82e");
@@ -47,12 +47,6 @@ $(document).ready(function(){
             $(this).css("border-color", "#FF0000");
             $('#submit').attr('disabled',true);
             $("#error_cell_phone").text("* Phone number is required");
-        }
-        else if(!$.isNumeric($pho))
-        {
-            $(this).css("border-color", "#FF0000");
-            $('#submit').attr('disabled',true);
-            $("#error_phone").text("* Phone number must be numeric");
         }
         else
         {
@@ -154,8 +148,10 @@ $(document).ready(function(){
             type: $(this).attr("method"),
             data: $(this).serialize(),
             success : function( data ) {
-                $('#paymentForm')[0].reset();
+                $("#paymentForm")[0].reset();
                 $("#resultado").html(data);
+                $("#params-form")[0].reset();
+                $(".modal").modal('hide');
             },
             error   : function( xhr, err ) {
                 console.log(err);
@@ -171,4 +167,19 @@ function fillInput($code_phone){
     $.mask.definitions['d'] = '[0-9]';
     $("#cellphone").mask("+"+$code_phone+" (ddd)-ddddddd");
     $("#cellphone").focus();
+}
+
+function showFact() {
+    $.ajax({
+        url: 'show/facts',
+        type: 'GET',
+        success : function( data ) {
+            $("#resultado").empty();
+            $("#resultado").append(data);
+        },
+        error   : function( xhr, err ) {
+            console.log(err);
+        }
+    });
+    return false;
 }

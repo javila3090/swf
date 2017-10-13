@@ -61,9 +61,9 @@ class PaymentController extends Controller
     public function postPaymentWithStripe(Request $request)
     {
         $rules = array(
+            'email' => 'required',
             'cardNumber' => 'required',
-            'month' => 'required',
-            'year' => 'required',
+            'expire_date' => 'required',
             'cvv' => 'required'
         );
         $validator = Validator::make(Input::all(), $rules);
@@ -75,11 +75,13 @@ class PaymentController extends Controller
             $input = array_except($input,array('_token'));
             $stripe = Stripe::make('sk_test_dsmevhFlECFf8RWRzkvJHlLi');
             try {
+                $expire_date=$request->input('expire_date');
+                $expire_date = explode('/',$expire_date);
                 $token = $stripe->tokens()->create([
                     'card' => [
                         'number'    => $request->input('cardNumber'),
-                        'exp_month' => $request->input('month'),
-                        'exp_year'  => $request->input('year'),
+                        'exp_month' => $expire_date[0],
+                        'exp_year'  => $expire_date[1],
                         'cvc'       => $request->input('cvv'),
                     ],
                 ]);
@@ -87,24 +89,36 @@ class PaymentController extends Controller
                     \Session::put('error','The Stripe Token was not generated correctly');
                     return redirect()->route('/');
                 }
-                $quantity = DB::table('quantity')->where('quantity', '=', $request->input('quantity'))->limit(1)->get(['cost']);
-                foreach ($quantity as $v){
-                    $cost=$v->cost;
-                }
                 $charge = $stripe->charges()->create([
                     'card' => $token['id'],
                     'currency' => 'USD',
-                    'amount'   => $cost,
+                    'amount'   => $request->input('amount'),
                     'description' => 'Add in wallet',
                 ]);
                 if($charge['status'] == 'succeeded') {
+                    $quantity = DB::table('quantity')->where('cost', '=', $request->input('amount'))->limit(1)->get(['quantity']);
+                    foreach ($quantity as $v){
+                        $quantity=$v->quantity;
+                    }
                     $order = new Order; // Creando el objeto del modelo
-                    $order -> create($request->all());
-                    \Session::put('success','Pay completed successfully');
-                    return redirect()->route('/');
+                    $order->email = $request->input('email');
+                    $order->phone_number = $request->input('phone_number');
+                    $order->id_frecuency = $request->input('id_frecuency');
+                    $order->quantity = $quantity;
+                    $order -> save();
+                    //\Session::put('success','Pay completed successfully');
+                    //return redirect()->route('/');
+                    return ("<div class='alert alert-dismissable alert-success'>
+                    <button type='button' class='close' data-dismiss='alert'>×</button>
+                    Pay completed successfully
+                    </div>");
                 } else {
-                    \Session::put('error','Money not add in wallet!!');
-                    return redirect()->route('/');
+                    //\Session::put('error','Money not add in wallet!!');
+                    //return redirect()->route('/');
+                    return ("<div class='alert alert-dismissable alert-danger'>
+                    <button type='button' class='close' data-dismiss='alert'>×</button>
+                    Money not add in wallet
+                    </div>");
                 }
             } catch (Exception $e) {
                 \Session::put('error',$e->getMessage());

@@ -26,29 +26,34 @@
             </div>
         </div>
     </header>
+    <div id="section-wrap-comments">
+        <div class="row">
+            <div class="col-md-3 col-sm-3 col-xs-6 text-center">
+                <p>“I am your father.”</p>
+                <p class="small-title-black">Darth Vader</p>
+            </div>
+            <div class="col-md-3 col-sm-3 col-xs-6 text-center">
+                <p>“The Force will be with you. Always.”</p>
+                <p class="small-title-black">Obi-Wan Kenobi</p>
+            </div>
+            <div class="col-md-3 col-sm-3 col-xs-6 text-center">
+                <p>"Just for once, let me look on you with my own eyes."</p>
+                <p class="small-title-black">Anakin Skywalker</p>
+            </div>
+            <div class="col-md-3 col-sm-3 col-xs-6 text-center">
+                <p>“You can’t stop the change, any more than you can stop the suns from setting.”</p>
+                <p class="small-title-black">Shmi Skywalker</p>
+            </div>
+        </div>
+    </div>
     <div id="form-sign-up">
-
         <div class="row">
             <div class="">
                 <div class="col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1 jumbotron">
-                    <!-- Flash messages -->
-                    @if ($message = Session::get('success'))
-                        <div class="custom-alerts alert alert-success fade in">
-                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true"></button>
-                            {!! $message !!}
-                        </div>
-                        <?php Session::forget('success');?>
-                    @endif
-                    @if ($message = Session::get('error'))
-                        <div class="custom-alerts alert alert-danger fade in">
-                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true"></button>
-                            {!! $message !!}
-                        </div>
-                        <?php Session::forget('error');?>
-                    @endif
+                    <div id="resultado"></div>
                     <h2 class="title-2"><b>SEND SOME FACTS</b></h2>
                     <br>
-                    <form>
+                    <form id="params-form">
                         <div class="row">
                             <div class="form-group  col-lg-8 col-lg-offset-2  col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-12">
                                 <label for="number" class="header-ask xs-header-text">What cell number should receive facts?</label>
@@ -93,6 +98,7 @@
                                         <span class="xs-text">1 a day</span>
                                     </label>
                                 </div>
+                                <br>
                                 <label class="error" for="error_frecuency" id="error_frecuency"></label>
                             </div>
                         </div>
@@ -100,23 +106,14 @@
                             <div class="form-group col-lg-10 col-lg-offset-1 col-md-10 col-md-offset-1 col-xs-12">
                                 <label for="amount" class="header-ask xs-header-text">How many facts should we send total?</label>
                                 <div>
-                                    <label>
-                                        <input type="radio" class="option-input" value="20" name="amount" checked />
-                                        <span class="xs-text">20 ($5)</span>
-                                    </label>
-                                    <label>
-                                        <input type="radio" class="option-input" value="16" name="amount" />
-                                        <span class="xs-text">16 ($4)</span>
-                                    </label>
-                                    <label>
-                                        <input type="radio" class="option-input" value="8" name="amount" />
-                                        <span class="xs-text">8 ($2)</span>
-                                    </label>
-                                    <label>
-                                        <input type="radio" class="option-input" value="4" name="amount" />
-                                        <span class="xs-text">4 ($1)</span>
-                                    </label>
+                                    @foreach($costs as $cost)
+                                        <label>
+                                            <input type="radio" class="option-input" value="{{ $cost->cost }}" name="amount" />
+                                            <span class="xs-text">{{ $cost->quantity }} (${{ $cost->cost }})</span>
+                                        </label>
+                                    @endforeach
                                 </div>
+                                <br>
                                 <label class="error" for="error_amount" id="error_amount"></label>
                             </div>
                         </div>
@@ -138,10 +135,10 @@
                 <div class="modal-body">
                     <div class="panel panel-default">
                         <div class="panel-body">
-                            {!! Form::open(['route' => 'addmoney.stripe', 'method' => 'post', 'id' => 'paymentForm1']) !!}
+                            {!! Form::open(['route' => 'addmoney.stripe', 'method' => 'post', 'id' => 'paymentForm']) !!}
                                 <input type="hidden" value="" name="phone_number" id="phone_number" required/>
                                 <input type="hidden" value="" name="id_frecuency" id="id_frecuency" required/>
-                                <input type="hidden" value="" name="quantity" id="quantity" required/>
+                                <input type="hidden" value="" name="amount" id="amount" required/>
                                 <!-- Email -->
                                 <div class="form-group">
                                     <div class="input-group">
@@ -152,18 +149,13 @@
                                 <div class="form-group">
                                     <div class="input-group">
                                         <span class="input-group-addon"><span class="glyphicon glyphicon-credit-card"></span></span>
-                                        <input type="number" class="form-control" name="cardNumber" id="cardNumber" placeholder="Número de tarjeta" required autofocus />
+                                        <input type="number" class="form-control" name="cardNumber" id="cardNumber" placeholder="Card Number" required autofocus />
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-xs-3 col-md-3">
+                                    <div class="col-xs-6 col-md-6">
                                         <div class="form-group">
-                                            <input type="text" class="form-control" name="month" id="month" placeholder="Month" required />
-                                        </div>
-                                    </div>
-                                    <div class="col-xs-3 col-md-3">
-                                        <div class="form-group">
-                                            <input type="text" class="form-control" name="year" id="year" placeholder="Year" required />
+                                            <input type="text" class="form-control" name="expire_date" id="expire_date" placeholder="Expire date" required />
                                         </div>
                                     </div>
                                     <div class="col-xs-6 col-md-6 pull-right">
@@ -174,7 +166,7 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-lg-4 col-lg-offset-4 col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3 col-xs-8 col-xs-offset-2">
-                                        <button type="submit" class="btn btn-primary btn-lg btn-block">Pay <span id="amount"></span>,00 $</button>
+                                        <button type="submit" class="btn btn-primary btn-lg btn-block">Pay <span id="amountSpan"></span>,00 $</button>
                                     </div>
                                 </div>
                             {!! Form::close() !!}
@@ -182,7 +174,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                 </div>
             </div>
 

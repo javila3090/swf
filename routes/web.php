@@ -26,6 +26,11 @@ Route::get('facts', [
     'uses' => 'FactsController@facts'
 ]);
 
+Route::get('show/facts', [
+    'as' => 'show/facts',
+    'uses' => 'FactsController@show'
+]);
+
 /*** PAYPAL ROUTES ***/
 Route::get('paywithpaypal', array('as' => 'addmoney.paywithpaypal','uses' => 'PaymentController@payWithPaypal',));
 Route::post('paypal', array('as' => 'addmoney.paypal','uses' => 'PaymentController@postPaymentWithpaypal',));

@@ -46,6 +46,19 @@ header.masthead {
     min-height: 680px !important
 }
 
+#section-wrap-comments{
+    text-align: center;
+    background-color: #e6e6e6;
+    background-attachment: scroll;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    padding: 20px;
+    min-height: 280px !important;
+    padding-top: 60px;
+}
+
 /*** Forms ***/
 
 #form-sign-up {
@@ -103,7 +116,6 @@ header.masthead {
     color: gold;
     border-color: gold;
 }
-
 
 @keyframes click-wave {
     0% {
@@ -196,6 +208,18 @@ header.masthead {
     text-align: center;
     color: gold;
     font-weight: normal;
+    font-size: 127% !important;
+    line-height: 130%;
+    padding: 2% 2% 2% 2%;
+}
+
+.small-title-black{
+    margin-top: 20px;
+    font-family: 'Francois One', sans-serif !important;
+    text-align: center;
+    letter-spacing: 3px;
+    color: black;
+    font-weight: bold;
     font-size: 127% !important;
     line-height: 130%;
     padding: 2% 2% 2% 2%;
