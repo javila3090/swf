@@ -13,6 +13,29 @@ body {
     background-color: black;
 }
 
+.secure {
+    font-family: 'Roboto', sans-serif !important;
+    font-size: 12.5px !important;
+    letter-spacing: 1.5px;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    background-color: white;
+}
+
+.login {
+    margin-top: 40px;
+    padding: 20px;
+}
+
+.sw-form{
+    border: 1px solid gold;
+}
+
+.sw-form input{
+    border: 1px solid gold;
+}
+
 
 header.masthead {
     text-align: center;

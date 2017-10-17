@@ -39,3 +39,8 @@ Route::get('paypal', array('as' => 'payment.status','uses' => 'PaymentController
 /*** STRIPE ROUTES ***/
 Route::get('addmoney/stripe', array('as' => 'addmoney.paywithstripe','uses' => 'PaymentController@payWithStripe',));
 Route::post('addmoney/stripe', array('as' => 'addmoney.stripe','uses' => 'PaymentController@postPaymentWithStripe',));
+
+Auth::routes();
+Route::get('logout', 'Auth\LoginController@logout')->name('logout');
+
+Route::get('/secure/home', 'HomeController@index')->name('home');
