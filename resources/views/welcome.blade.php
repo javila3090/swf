@@ -1,3 +1,21 @@
+Skip to content
+This repository
+Search
+Pull requests
+Issues
+Marketplace
+Explore
+@javila3090
+Sign out
+Unwatch 2
+Star 0  Fork 0 juanfrag/sendstarwarsfacts Private
+Code  Issues 0  Pull requests 0  Projects 0  Wiki  Insights
+Branch: master Find file Copy pathsendstarwarsfacts/resources/views/welcome.blade.php
+3450e13  5 days ago
+@javila3090 javila3090 SWFacts v1.0 - Agregando funcionalidad de pagos
+1 contributor
+RawBlameHistory
+183 lines (181 sloc)  10.7 KB
 @extends('layouts.app')
 
 @section('content')
@@ -55,18 +73,18 @@
                     <br>
                     <form id="params-form">
                         <div class="row">
-                            <div class="form-group  col-lg-8 col-lg-offset-2  col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-12">
+                            <div class="form-group  col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-sm-6 col-sm-offset-3 col-xs-8 col-xs-offset-2">
                                 <label for="number" class="header-ask xs-header-text">What cell number should receive facts?</label>
                                 <div class="form-group">
                                     <div class="input-group">
                                         <div class="input-group-btn">
                                             <div class="btn-group">
                                                 <button class="btn btn-default dropdown-toggle dropdown-button" type="button" data-toggle="dropdown">
-                                                    <span class="xs-text">Country</span> <span class="caret"></span>
+                                                    <span class="xs-text">Select a country</span> <span class="caret"></span>
                                                 </button>
                                                 <ul class="dropdown-menu cellphone" role="menu">
                                                     @foreach($codes as $code)
-                                                        <li><a class="phone_code" onclick="fillInput('{{ $code->phonecode }}')">{{ $code->name }} + {{ $code->phonecode }}</a></li>
+                                                        <li><a class="phone_code text-justify" onclick="fillInput('{{ $code->phonecode }}')"><img src="assets/images/flags/1x1/{{ strtoupper($code->iso) }}.svg" height="20" width="20"/> {{ $code->name }} + {{ $code->phonecode }}</a></li>
                                                     @endforeach
                                                 </ul>
                                             </div>
@@ -128,7 +146,7 @@
         <div class="modal-dialog">
             <!-- Modal content-->
             <div class="modal-content">
-                <div class="modal-header"> 
+                <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                     <h4 class="modal-title">Payment Details</h4>
                 </div>
@@ -136,39 +154,39 @@
                     <div class="panel panel-default">
                         <div class="panel-body">
                             {!! Form::open(['route' => 'addmoney.stripe', 'method' => 'post', 'id' => 'paymentForm']) !!}
-                                <input type="hidden" value="" name="phone_number" id="phone_number" required/>
-                                <input type="hidden" value="" name="id_frecuency" id="id_frecuency" required/>
-                                <input type="hidden" value="" name="amount" id="amount" required/>
-                                <!-- Email -->
-                                <div class="form-group">
-                                    <div class="input-group">
-                                        <span class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span></span>
-                                        <input type="email" class="form-control" name="email" id="email" placeholder="Email" required autofocus />
+                            <input type="hidden" value="" name="phone_number" id="phone_number" required/>
+                            <input type="hidden" value="" name="id_frecuency" id="id_frecuency" required/>
+                            <input type="hidden" value="" name="amount" id="amount" required/>
+                            <!-- Email -->
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span></span>
+                                    <input type="email" class="form-control" name="email" id="email" placeholder="Email" required autofocus />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><span class="glyphicon glyphicon-credit-card"></span></span>
+                                    <input type="number" class="form-control" name="cardNumber" id="cardNumber" placeholder="Card Number" required autofocus />
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-6 col-md-6">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" name="expire_date" id="expire_date" placeholder="Expire date" required />
                                     </div>
                                 </div>
-                                <div class="form-group">
-                                    <div class="input-group">
-                                        <span class="input-group-addon"><span class="glyphicon glyphicon-credit-card"></span></span>
-                                        <input type="number" class="form-control" name="cardNumber" id="cardNumber" placeholder="Card Number" required autofocus />
+                                <div class="col-xs-6 col-md-6 pull-right">
+                                    <div class="form-group">
+                                        <input type="number" maxlength="3" name="cvv" class="form-control" id="cvv" placeholder="CVV" required />
                                     </div>
                                 </div>
-                                <div class="row">
-                                    <div class="col-xs-6 col-md-6">
-                                        <div class="form-group">
-                                            <input type="text" class="form-control" name="expire_date" id="expire_date" placeholder="Expire date" required />
-                                        </div>
-                                    </div>
-                                    <div class="col-xs-6 col-md-6 pull-right">
-                                        <div class="form-group">
-                                            <input type="number" maxlength="3" name="cvv" class="form-control" id="cvv" placeholder="CVV" required />
-                                        </div>
-                                    </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-4 col-lg-offset-4 col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3 col-xs-8 col-xs-offset-2">
+                                    <button type="submit" class="btn btn-primary btn-lg btn-block">Pay <span id="amountSpan"></span>,00 $</button>
                                 </div>
-                                <div class="row">
-                                    <div class="col-lg-4 col-lg-offset-4 col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3 col-xs-8 col-xs-offset-2">
-                                        <button type="submit" class="btn btn-primary btn-lg btn-block">Pay <span id="amountSpan"></span>,00 $</button>
-                                    </div>
-                                </div>
+                            </div>
                             {!! Form::close() !!}
                         </div>
                     </div>

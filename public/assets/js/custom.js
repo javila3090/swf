@@ -165,7 +165,7 @@ $(document).ready(function(){
 function fillInput($code_phone){
     $.mask.definitions['9'] = '';
     $.mask.definitions['d'] = '[0-9]';
-    $("#cellphone").mask("+"+$code_phone+" (ddd)-ddddddd");
+    $("#cellphone").val("+"+$code_phone);
     $("#cellphone").focus();
 }
 
