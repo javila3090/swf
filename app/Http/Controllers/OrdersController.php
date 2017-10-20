@@ -1,4 +1,10 @@
 <?php
+/**
+ * Created by PhpStorm.
+ * User: Julio
+ * Date: 20/10/2017
+ * Time: 05:14 PM
+ */
 
 namespace App\Http\Controllers;
 
@@ -7,33 +13,13 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Validator;
 use App\Fact;
+use App\Order;
 
-class FactsController extends Controller
+class OrdersController extends Controller
 {
     public function index(){
-        $codes = DB::table('phone_codes')->get();
-        $costs = DB::table('quantity')->get(['quantity','cost']);
-        return \View::make('welcome', compact('codes','costs'));
-    }
-
-    public function search(){
-        $codes = DB::table('phone_codes')->get();
-        return \View::make('search', compact('codes'));
-    }
-
-    public function facts(){
-        $fact = Fact::inRandomOrder()->first();
-        return \View::make('facts',  compact('fact'));
-}
-
-    public function show(){
-        $fact = Fact::inRandomOrder()->first();
-        return $fact->text;
-    }
-
-    public function listFacts(){
-        $facts = Fact::all();
-        return \View::make('facts_list',  compact('facts'));
+        $orders = Order::all();
+        return \View::make('orders',  compact('orders'));
     }
 
     public function store(Request $request){

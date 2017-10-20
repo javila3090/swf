@@ -31,6 +31,11 @@ Route::get('show/facts', [
     'uses' => 'FactsController@show'
 ]);
 
+Route::post('store/fact', [
+    'as' => 'store/fact',
+    'uses' => 'FactsController@store'
+]);
+
 /*** PAYPAL ROUTES ***/
 Route::get('paywithpaypal', array('as' => 'addmoney.paywithpaypal','uses' => 'PaymentController@payWithPaypal',));
 Route::post('paypal', array('as' => 'addmoney.paypal','uses' => 'PaymentController@postPaymentWithpaypal',));
@@ -46,3 +51,20 @@ Route::get('logout', 'Auth\LoginController@logout')->name('logout');
 Route::get('/secure/home', 'HomeController@index')->name('home');
 
 Route::get('/secure/list/facts', 'FactsController@listFacts')->name('list_facts');
+
+Route::get('/secure/list/orders', 'OrdersController@index')->name('list_orders');
+
+Route::get('fact/edit/{id}', [
+    'as' => 'fact/edit',
+    'uses' => 'FactsController@edit'
+]);
+
+Route::get('fact/delete/{id}', [
+    'as' => 'fact/delete',
+    'uses' => 'FactsController@destroy'
+]);
+
+Route::put('fact/update/{fact}', [
+    'as' => 'fact/update',
+    'uses' => 'FactsController@update'
+]);

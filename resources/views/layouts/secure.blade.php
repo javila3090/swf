@@ -26,7 +26,16 @@
     <link rel="stylesheet" href="{{ URL::asset('assets/template/vendors/jqvmap/dist/jqvmap.min.css') }}">
     <link rel="stylesheet" href="{{ URL::asset('assets/template/vendors/bootstrap-daterangepicker/daterangepicker.css') }}">
     <link rel="stylesheet" href="{{ URL::asset('assets/template/build/css/custom.min.css') }}">
-    <link rel="stylesheet" href="{{ URL::asset('assets/css/datatables.min.css') }}">
+    <!-- NProgress -->
+    <link href="{{ URL::asset('assets/template/vendors/nprogress/nprogress.css') }}">
+    <!-- iCheck -->
+    <link href="{{ URL::asset('assets/template/vendors/iCheck/skins/flat/green.css') }}">
+    <!-- Datatables -->
+    <link href="{{ URL::asset('assets/template/vendors/datatables.net-bs/css/dataTables.bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ URL::asset('assets/template/vendors/datatables.net-buttons-bs/css/buttons.bootstrap.min.css') }}">
+    <link href="{{ URL::asset('assets/template/vendors/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css') }}">
+    <link href="{{ URL::asset('assets/template/vendors/datatables.net-responsive-bs/css/responsive.bootstrap.min.css') }}">
+    <link href="{{ URL::asset('assets/template/vendors/vendors/datatables.net-scroller-bs/css/scroller.bootstrap.min.css" rel="stylesheet') }}">
     <!-- scripts -->
     <script>
         window.Laravel =
@@ -68,25 +77,11 @@
                         <h3>General</h3>
                         <ul class="nav side-menu">
                             <li><a href="{{url('secure/home')}}"><i class="fa fa-home"></i> Home </a>
-                            <li><a><i class="fa fa-bar-chart"></i> Stadistics  <span class="fa fa-chevron-down"></span></a>
-                                <ul class="nav child_menu">
-                                    <li><a href="index.html">Dashboard</a></li>
-                                    <li><a href="index2.html">Dashboard2</a></li>
-                                    <li><a href="index3.html">Dashboard3</a></li>
-                                </ul>
+                            <li><a><i class="fa fa-bar-chart"></i> Stadistics  <span class="fa fa-chevron-left"></span></a>
                             </li>
-                            <li><a><i class="fa fa-edit"></i> Orders <span class="fa fa-chevron-down"></span></a>
-                                <ul class="nav child_menu">
-                                    <li><a href="form.html">New Orders</a></li>
-                                    <li><a href="form_advanced.html"></a></li>
-                                    <li><a href="form_validation.html">Form Validation</a></li>
-                                    <li><a href="form_wizards.html">Form Wizard</a></li>
-                                    <li><a href="form_upload.html">Form Upload</a></li>
-                                    <li><a href="form_buttons.html">Form Buttons</a></li>
-                                </ul>
+                            <li><a href="{{route('list_orders')}}"><i class="fa fa-shopping-cart"></i> Orders <span class="fa fa-chevron-left"></span></a>
                             </li>
                             <li><a href="{{route('list_facts')}}"><i class="fa fa-send-o"></i> Facts <span class="fa fa-chevron-left"></span></a>
-
                             </li>
 
                             <!--<li><a href="javaasset:void(0)"><i class="fa fa-laptop"></i> Landing Page <span class="label label-success pull-right">Coming Soon</span></a></li>-->
@@ -163,8 +158,6 @@
 </div>
 <script type="text/javascript" src="{{ asset('assets/template/vendors/jquery/dist/jquery.min.js') }}"></script>
 <script type="text/javascript" src="{{ asset('assets/template/vendors/bootstrap/dist/js/bootstrap.min.js') }}"></script>
-<script type="text/javascript" src="{{ asset('assets/js/dataTables.bootstrap.min.js') }}"></script>
-<script type="text/javascript" src="{{ asset('assets/js/datatables.min.js') }}"></script>
 <script type="text/javascript" src="{{ asset('assets/template/vendors/fastclick/lib/fastclick.js') }}"></script>
 <script type="text/javascript" src="{{ asset('assets/template/vendors/nprogress/nprogress.js') }}"></script>
 <script type="text/javascript" src="{{ asset('assets/template/vendors/Chart.js/dist/Chart.min.js') }}"></script>
@@ -196,6 +189,23 @@
 <script type="text/javascript" src="{{ asset('assets/template/vendors/bootstrap-daterangepicker/daterangepicker.js') }}"></script>
 <!-- Custom Theme assets -->
 <script type="text/javascript" src="{{ asset('assets/template/build/js/custom.min.js') }}"></script>
+<!-- DataTables -->
+<script src="{{ asset('assets/template/vendors/datatables.net/js/jquery.dataTables.min.js') }}"></script>
+<script src="{{ asset('assets/template/vendors/datatables.net-bs/js/dataTables.bootstrap.min.js') }}"></script>
+
+<script src="{{ asset('assets/template/vendors/datatables.net-buttons/js/dataTables.buttons.min.js') }}"></script>
+<script src="{{ asset('assets/template/vendors/datatables.net-buttons-bs/js/buttons.bootstrap.min.js') }}"></script>
+<script src="{{ asset('assets/template/vendors/datatables.net-buttons/js/buttons.flash.min.js') }}"></script>
+<script src="{{ asset('assets/template/vendors/datatables.net-buttons/js/buttons.html5.min.js') }}"></script>
+<script src="{{ asset('assets/template/vendors/datatables.net-buttons/js/buttons.print.min.js') }}"></script>
+<script src="{{ asset('assets/template/vendors/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js') }}"></script>
+<script src="{{ asset('assets/template/vendors/datatables.net-keytable/js/dataTables.keyTable.min.js') }}"></script>
+<script src="{{ asset('assets/template/vendors/datatables.net-responsive/js/dataTables.responsive.min.js') }}"></script>
+<script src="{{ asset('assets/template/vendors/datatables.net-responsive-bs/js/responsive.bootstrap.js') }}"></script>
+<script src="{{ asset('assets/template/vendors/datatables.net-scroller/js/dataTables.scroller.min.js') }}"></script>
+<script src="{{ asset('assets/template/vendors/vendors/jszip/dist/jszip.min.js') }}"></script>
+<script src="{{ asset('assets/template/vendors/pdfmake/build/pdfmake.min.js') }}"></script>
+<script src="{{ asset('assets/template/vendors/pdfmake/build/vfs_fonts.js') }}"></script>
 
 </body>
 </html>

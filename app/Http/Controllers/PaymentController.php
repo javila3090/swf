@@ -100,7 +100,7 @@ class PaymentController extends Controller
                     foreach ($quantity as $v){
                         $quantity=$v->quantity;
                     }
-                    $order = new Order; // Creando el objeto del modelo
+                    $order = new Order(); // Creando el objeto del modelo
                     $order->email = $request->input('email');
                     $order->phone_number = $request->input('phone_number');
                     $order->id_frecuency = $request->input('id_frecuency');
