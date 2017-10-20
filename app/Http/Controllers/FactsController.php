@@ -28,4 +28,9 @@ class FactsController extends Controller
         $fact = Fact::inRandomOrder()->first();
         return $fact->text;
     }
+
+    public function listFacts(){
+        $facts = Fact::all();
+        return \View::make('facts_list',  compact('facts'));
+    }
 }

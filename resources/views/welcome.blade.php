@@ -1,21 +1,3 @@
-Skip to content
-This repository
-Search
-Pull requests
-Issues
-Marketplace
-Explore
-@javila3090
-Sign out
-Unwatch 2
-Star 0  Fork 0 juanfrag/sendstarwarsfacts Private
-Code  Issues 0  Pull requests 0  Projects 0  Wiki  Insights
-Branch: master Find file Copy pathsendstarwarsfacts/resources/views/welcome.blade.php
-3450e13  5 days ago
-@javila3090 javila3090 SWFacts v1.0 - Agregando funcionalidad de pagos
-1 contributor
-RawBlameHistory
-183 lines (181 sloc)  10.7 KB
 @extends('layouts.app')
 
 @section('content')
@@ -73,14 +55,14 @@ RawBlameHistory
                     <br>
                     <form id="params-form">
                         <div class="row">
-                            <div class="form-group  col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-sm-6 col-sm-offset-3 col-xs-8 col-xs-offset-2">
+                            <div class="form-group col-lg-6 col-lg-offset-3 col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
                                 <label for="number" class="header-ask xs-header-text">What cell number should receive facts?</label>
                                 <div class="form-group">
                                     <div class="input-group">
                                         <div class="input-group-btn">
                                             <div class="btn-group">
                                                 <button class="btn btn-default dropdown-toggle dropdown-button" type="button" data-toggle="dropdown">
-                                                    <span class="xs-text">Select a country</span> <span class="caret"></span>
+                                                    <span class="xs-text">Code</span> <span class="caret"></span>
                                                 </button>
                                                 <ul class="dropdown-menu cellphone" role="menu">
                                                     @foreach($codes as $code)
@@ -89,7 +71,9 @@ RawBlameHistory
                                                 </ul>
                                             </div>
                                         </div>
+                                        <span id="phone_code" class="input-group-addon xs-text"></span>
                                         <input type="text" name="cellphone" id="cellphone" class="form-control xs-text" />
+                                        <input type="hidden" name="input_phone_code" id="input_phone_code" class="form-control xs-text" />
                                     </div>
                                 </div>
                                 <label class="error" for="error_cell_phone" id="error_cell_phone"></label>
@@ -154,6 +138,7 @@ RawBlameHistory
                     <div class="panel panel-default">
                         <div class="panel-body">
                             {!! Form::open(['route' => 'addmoney.stripe', 'method' => 'post', 'id' => 'paymentForm']) !!}
+                            <input type="hidden" value="" name="code" id="code" required/>
                             <input type="hidden" value="" name="phone_number" id="phone_number" required/>
                             <input type="hidden" value="" name="id_frecuency" id="id_frecuency" required/>
                             <input type="hidden" value="" name="amount" id="amount" required/>

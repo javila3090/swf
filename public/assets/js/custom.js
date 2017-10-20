@@ -1,5 +1,33 @@
 $(document).ready(function(){
 
+    $('#facts').DataTable( {
+        "language": {
+            "sProcessing":     "Procesando...",
+            "sLengthMenu":     "Mostrar _MENU_ registros",
+            "sZeroRecords":    "No se encontraron resultados",
+            "sEmptyTable":     "Ningún dato disponible en esta tabla",
+            "sInfo":           "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+            "sInfoEmpty":      "Mostrando registros del 0 al 0 de un total de 0 registros",
+            "sInfoFiltered":   "(filtrado de un total de _MAX_ registros)",
+            "sInfoPostFix":    "",
+            "sSearch":         "Buscar:",
+            "sUrl":            "",
+            "sInfoThousands":  ",",
+            "sLoadingRecords": "Cargando...",
+            "oPaginate": {
+                "sFirst":    "Primero",
+                "sLast":     "Último",
+                "sNext":     "Siguiente",
+                "sPrevious": "Anterior"
+            },
+            "oAria": {
+                "sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
+                "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+            }
+        }
+    } );
+
+
     $("a[href^='#']").on('click', function(e) {
         // prevent default anchor click behavior
         e.preventDefault();
@@ -25,10 +53,11 @@ $(document).ready(function(){
         }else if(!$("input:radio[name=amount]").is(":checked")){
             $("#error_amount").text("* Quantity is required");
         }else{
+            var code = $('input[name=input_phone_code]').val();
             var phone_number = $('input[name=cellphone]').val();
             var frecuency = $('input[name=frecuency]:checked').val();
             var amount = $('input[name=amount]:checked').val();
-            $(".modal-body #phone_number").val(phone_number);
+            $(".modal-body #phone_number").val(code+phone_number);
             $(".modal-body #id_frecuency").val(frecuency);
             $(".modal-body #amount").val(amount);
             $(".modal-body #amountSpan").html(amount);
@@ -165,7 +194,8 @@ $(document).ready(function(){
 function fillInput($code_phone){
     $.mask.definitions['9'] = '';
     $.mask.definitions['d'] = '[0-9]';
-    $("#cellphone").val("+"+$code_phone);
+    $("#phone_code").html("+"+$code_phone);
+    $("#input_phone_code").val("00"+$code_phone);
     $("#cellphone").focus();
 }
 

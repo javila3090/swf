@@ -44,3 +44,5 @@ Auth::routes();
 Route::get('logout', 'Auth\LoginController@logout')->name('logout');
 
 Route::get('/secure/home', 'HomeController@index')->name('home');
+
+Route::get('/secure/list/facts', 'FactsController@listFacts')->name('list_facts');
