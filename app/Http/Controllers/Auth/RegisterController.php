@@ -6,6 +6,8 @@ use App\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Input;
 
 class RegisterController extends Controller
 {
@@ -73,5 +75,52 @@ class RegisterController extends Controller
             'password' => bcrypt($data['password']),
             'id_rol' => $data['id_rol']
         ]);
+    }
+
+    /**
+     * @param Request $request
+     * @return string
+     */
+    public function store(Request $request)
+    {
+
+        $rules = array(
+            'name'     => 'required|max:255',
+            'email'    => 'required|email|max:255|unique:users',
+            'password' => 'required|min:6|confirmed',
+            'password_confirmation' => 'required',
+            'id_rol' => 'required'
+        );
+
+        $validator = Validator::make(Input::all(), $rules);
+
+        if ($validator->fails()) {
+
+            $error = $validator->errors()->first();
+            $request->session()->flash('message.level', 'error');
+            $request->session()->flash('message.content',  $error);
+            return redirect('register');
+
+        }else{
+
+            $user = new User; // Creando el objecto del modelo
+            $user->name= $request->input("name");
+            $user->email=$request->input("email");
+            $user->password= bcrypt($request->input("password"));
+            $user->id_rol= $request->input("id_rol");
+            $user -> save();
+            $request->session()->flash('message.level', 'success');
+            $request->session()->flash('message.content', 'Record saved successfully!');
+            return redirect()->route('register');
+        }
+
+    }
+
+    public function destroy(Request $request,$id){
+        $user = User::find($id);
+        $user -> delete();
+        $request->session()->flash('message.level', 'success');
+        $request->session()->flash('message.content', 'Record deleted successfully!');
+        return redirect()->route('user_list');
     }
 }

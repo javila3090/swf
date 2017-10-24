@@ -52,7 +52,7 @@
         <div class="col-md-3 left_col">
             <div class="left_col scroll-view">
                 <div class="navbar nav_title" style="border: 0;">
-                    <a href="index.html" class="site_title"><i class="fa fa-user"></i> <span>ADMIN AREA</span></a>
+                    <a href="#" class="site_title"><i class="fa fa-user"></i> <span>ADMIN AREA</span></a>
                 </div>
 
                 <div class="clearfix"></div>
@@ -83,7 +83,11 @@
                             </li>
                             <li><a href="{{route('list_facts')}}"><i class="fa fa-send-o"></i> Facts <span class="fa fa-chevron-left"></span></a>
                             </li>
-                            <li><a href="{{route('user_register')}}"><i class="fa fa-user"></i> Users <span class="fa fa-chevron-left"></span></a>
+                            <li><a href="#"><i class="fa fa-user"></i> Users <span class="fa fa-chevron-left"></span></a>
+                                <ul class="nav child_menu">
+                                    <li><a href="{{route('user_register')}}">Register</a></li>
+                                    <li><a href="{{route('user_list')}}">List users</a></li>
+                                </ul>
                             </li>
                             <!--<li><a href="javaasset:void(0)"><i class="fa fa-laptop"></i> Landing Page <span class="label label-success pull-right">Coming Soon</span></a></li>-->
                         </ul>
@@ -105,7 +109,7 @@
                     <ul class="nav navbar-nav navbar-right">
                         <li class="">
                             <a href="javaasset:" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                                <img src="assets/template/production/images/img.jpg" alt="">{{ Auth::user()->name }}
+                                <img src="{{URL::asset('assets/images/img.jpg')}}" alt="">{{ Auth::user()->name }}
                                 <span class=" fa fa-angle-down"></span>
                             </a>
                             <ul class="dropdown-menu dropdown-usermenu pull-right">

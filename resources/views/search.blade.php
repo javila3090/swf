@@ -31,7 +31,7 @@
                                 </div>
                             </div>
                             <span id="phone_code" class="input-group-addon xs-text"></span>
-                            <input type="text" name="cellphone" id="cellphone" class="form-control xs-text" />
+                            <input type="number" name="cellphone" id="cellphone" class="form-control xs-text" />
                             <input type="hidden" name="input_phone_code" id="input_phone_code" class="form-control xs-text" />
                         </div>
                     </div>

@@ -49,7 +49,9 @@ Auth::routes();
 
 Route::get('logout', 'Auth\LoginController@logout')->name('logout');
 
-Route::get('/secure/home', 'HomeController@index')->name('secure_home');
+Route::post('user/store', 'Auth\RegisterController@store')->name('store_user');
+
+Route::get('/secure/home', 'SecureController@index')->name('secure_home');
 
 //Facts routes
 
@@ -68,4 +70,9 @@ Route::get('/secure/list/orders', 'OrdersController@index')->name('list_orders')
 Route::get('order/view/{id}', ['as' => 'order/view','uses' => 'OrdersController@viewDetail']);
 
 Route::get('secure/user/register', 'Auth\RegisterController@index')->name('user_register');
+
+//Users routes
+Route::get('secure/user/list', 'SecureController@list_users')->name('user_list');
+
+Route::get('user/delete/{id}', ['as' => 'user/delete','uses' => 'Auth\RegisterController@destroy']);
 

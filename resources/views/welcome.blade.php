@@ -72,7 +72,7 @@
                                             </div>
                                         </div>
                                         <span id="phone_code" class="input-group-addon xs-text"></span>
-                                        <input type="text" name="cellphone" id="cellphone" class="form-control xs-text" />
+                                        <input type="number" name="cellphone" id="cellphone" class="form-control xs-text" />
                                         <input type="hidden" name="input_phone_code" id="input_phone_code" class="form-control xs-text" />
                                     </div>
                                 </div>
@@ -143,23 +143,24 @@
                                 <input type="hidden" value="" name="id_frecuency" id="id_frecuency" required/>
                                 <input type="hidden" value="" name="amount" id="amount" required/>
                                 <div class="form-group{{ $errors->has('amount') ? ' has-error' : '' }}">
-                                    <label for="amount" class="col-md-4 control-label">Amount</label>
 
-                                    <div class="col-md-6">
-                                        <input id="amount" type="text" class="form-control" name="amount" value="{{ old('amount') }}" autofocus>
+                                    <div class="col-md-8">
+                                        <div class="input-group">
+                                            <input id="amount" type="hidden" class="form-control" name="amount" value="{{ old('amount') }}" autofocus readonly>
+                                        </div>
 
                                         @if ($errors->has('amount'))
                                             <span class="help-block">
-                                        <strong>{{ $errors->first('amount') }}</strong>
-                                    </span>
+                                                <strong>{{ $errors->first('amount') }}</strong>
+                                            </span>
                                         @endif
                                     </div>
                                 </div>
 
                                 <div class="form-group">
-                                    <div class="col-md-6 col-md-offset-4">
-                                        <button type="submit" class="btn btn-primary">
-                                            Pay with Paypal
+                                    <div class="col-md-8 col-md-offset-2">
+                                        <button type="submit" class="btn btn-primary btn-lg btn-block">
+                                            Pay <span class="amountSpan"></span>,00 $ with Paypal
                                         </button>
                                     </div>
                                 </div>
@@ -226,7 +227,7 @@
                                     </div>
                                     <div class="row">
                                         <div class="col-lg-4 col-lg-offset-4 col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3 col-xs-8 col-xs-offset-2">
-                                            <button type="submit" class="btn btn-primary btn-lg btn-block">Pay <span id="amountSpan"></span>,00 $</button>
+                                            <button type="submit" class="btn btn-primary btn-lg btn-block">Pay <span class="amountSpan"></span>,00 $</button>
                                         </div>
                                     </div>
                                 {!! Form::close() !!}

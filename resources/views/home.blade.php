@@ -14,10 +14,12 @@
             </div>
             <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
                 <span class="count_top"><i class="fa fa-money"></i> Total Profit</span>
-                <div class="count green">{{$total}} $</div>
-                <span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i>34% </i> From last Week</span>
+                <div class="count green">{{$profit->cost}} $</div>
+                <span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i>{{$profit_last_month->cost}} $ </i> this month</span>
             </div>
+
         </div>
+        <hr>
         <!-- /top tiles -->
 
         <!--<div class="row">

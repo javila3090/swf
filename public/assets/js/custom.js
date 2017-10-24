@@ -35,7 +35,7 @@ $(document).ready(function(){
             $(".modal-body #phone_number").val(code+phone_number);
             $(".modal-body #id_frecuency").val(frecuency);
             $(".modal-body #amount").val(amount);
-            $(".modal-body #amountSpan").html(amount);
+            $(".modal-body .amountSpan").html(amount);
             $("#expire_date").mask("dd/dd");
             $("#paymentModal").modal();
             $("#cellphone").css("border-color", "#2eb82e");
@@ -62,7 +62,7 @@ $(document).ready(function(){
             $(".modal-body #phone_number").val(code+phone_number);
             $(".modal-body #id_frecuency").val(frecuency);
             $(".modal-body #amount").val(amount);
-            $(".modal-body #amountSpan").html(amount);
+            $(".modal-body .amountSpan").html(amount);
             $("#expire_date").mask("dd/dd");
             $("#paymentModal").modal();
             $("#cellphone").css("border-color", "#2eb82e");
