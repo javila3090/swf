@@ -17,70 +17,31 @@ use App\Order;
 
 class OrdersController extends Controller
 {
+    /**
+     * @return mixed
+     */
     public function index(){
         $orders = Order::all();
-        return \View::make('orders',  compact('orders'));
-    }
-
-    public function store(Request $request){
-        $rules = array(
-            'text' => 'required'
-        );
-        $validator = Validator::make(Input::all(), $rules);
-        if ($validator->fails()) {
-            $request->session()->flash('message.level', 'danger');
-            $request->session()->flash('message.content', 'You must complete all mandatory fields');
-            return redirect()->route('list_facts');
-        }else {
-            $fact = new Fact(); // Creando el objecto del modelo
-            $fact -> create($request->all());
-            $request->session()->flash('message.level', 'success');
-            $request->session()->flash('message.content', 'Register successful!');
-            return redirect()->route('list_facts');
-        }
+        return \View::make('secure.orders',  compact('orders'));
     }
 
     /**
      * @param $id
-     * @return $this|\Illuminate\Http\RedirectResponse
+     * @return mixed
      */
-    public function update($id, Request $request)
-    {
-        $rules = array(
-            'text' => 'required',
-        );
-
-        $validator = Validator::make(Input::all(), $rules);
-
-        if ($validator->fails()) {
-
-            $messages = $validator->messages();
-            $request->session()->flash('message.level', 'danger');
-            $request->session()->flash('message.content', 'You must complete all mandatory fields');
-            return redirect('secure/list/facts');
-            //return redirect('personas/lista')->with('message', 'Debe completar todos los campos obligatorios del formulario');
-
-        }else{
-
-            $fact = Fact::findOrFail($id);
-            $data = Input::all();
-            $fact->fill($data);
-            $fact->save();
-            $request->session()->flash('message.level', 'success');
-            $request->session()->flash('message.content', 'Record udpated successfully!');
-            return redirect('secure/list/facts');
-            //return redirect('personas/lista')->with('message', '¡Registro actualizado con &eacute;xito!');
-        }
-    }
-
-    /**
-     * @param $id
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     */
-    public function edit($id)
-    {
-        $fact = Fact::findOrFail($id);
-        return view('edit', compact('fact'));
+    public function viewDetail($order){
+        $order = DB::table('orders')
+                ->join('frecuency', 'orders.id_frecuency', '=', 'frecuency.id')
+                ->join('quantity', 'orders.quantity', '=', 'quantity.quantity')
+                ->join('status', 'orders.id_status', '=', 'status.id')
+                ->leftjoin('facts_sent', 'orders.id', '=', 'facts_sent.id_order')
+                ->select('orders.id','orders.email','orders.phone_number', 'orders.created_at','frecuency.name','quantity.quantity',
+                    'quantity.cost','status.status', DB::raw("count(facts_sent.id_order) as count"))
+                ->where('orders.id','=',$order)
+                ->groupBy('orders.id','orders.email','orders.phone_number', 'orders.created_at','frecuency.name','quantity.quantity',
+                    'quantity.cost','status.status')
+                ->first();
+        return \View::make('secure.order_detail',  compact('order'));
     }
 
     /**
@@ -88,10 +49,10 @@ class OrdersController extends Controller
      * @return \Illuminate\Http\RedirectResponse
      */
     public function destroy($id, Request $request){
-        $registro = Fact::find($id);
+        $registro = Order::find($id);
         $registro -> delete();
         $request->session()->flash('message.level', 'success');
         $request->session()->flash('message.content', 'Record deleted successfully!');
-        return redirect('secure/list/facts');
+        return redirect('secure/list/orders');
     }
 }

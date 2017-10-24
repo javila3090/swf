@@ -45,6 +45,60 @@ $(document).ready(function(){
         }
     });
 
+    $("#open-pay-form-modal").click(function(){
+        if ($("#cellphone").val()=='') {
+            $("#cellphone").css("border-color", "#FF0000");
+            $("#cellphone").focus();
+            $("#error_cell_phone").text("* Phone number is required");
+        }else if(!$("input:radio[name=frecuency]").is(":checked")){
+            $("#error_frecuency").text("* Frecuency is required");
+        }else if(!$("input:radio[name=amount]").is(":checked")){
+            $("#error_amount").text("* Quantity is required");
+        }else{
+            var code = $('input[name=input_phone_code]').val();
+            var phone_number = $('input[name=cellphone]').val();
+            var frecuency = $('input[name=frecuency]:checked').val();
+            var amount = $('input[name=amount]:checked').val();
+            $(".modal-body #phone_number").val(code+phone_number);
+            $(".modal-body #id_frecuency").val(frecuency);
+            $(".modal-body #amount").val(amount);
+            $(".modal-body #amountSpan").html(amount);
+            $("#expire_date").mask("dd/dd");
+            $("#paymentModal").modal();
+            $("#cellphone").css("border-color", "#2eb82e");
+            $("#error_cell_phone").text("");
+            $("#error_frecuency").text("");
+            $("#error_amount").text("");
+        }
+    });
+
+    $("#open-paypal-form").click(function(){
+        if ($("#cellphone").val()=='') {
+            $("#cellphone").css("border-color", "#FF0000");
+            $("#cellphone").focus();
+            $("#error_cell_phone").text("* Phone number is required");
+        }else if(!$("input:radio[name=frecuency]").is(":checked")){
+            $("#error_frecuency").text("* Frecuency is required");
+        }else if(!$("input:radio[name=amount]").is(":checked")){
+            $("#error_amount").text("* Quantity is required");
+        }else {
+            var code = $('input[name=input_phone_code]').val();
+            var phone_number = $('input[name=cellphone]').val();
+            var frecuency = $('input[name=frecuency]:checked').val();
+            var amount = $('input[name=amount]:checked').val();
+            $(".modal-body #phone_number").val(code + phone_number);
+            $(".modal-body #id_frecuency").val(frecuency);
+            $(".modal-body #amount").val(amount);
+            $(".modal-body #amountSpan").html(amount);
+            $("#expire_date").mask("dd/dd");
+            $("#paymentPaypalModal").modal();
+            $("#cellphone").css("border-color", "#2eb82e");
+            $("#error_cell_phone").text("");
+            $("#error_frecuency").text("");
+            $("#error_amount").text("");
+        }
+    });
+
     $("#cellphone").focusout(function(){
         $pho =$("#cellphone").val();
         if($(this).val()==''){
@@ -151,11 +205,15 @@ $(document).ready(function(){
             url: $(this).attr("action"),
             type: $(this).attr("method"),
             data: $(this).serialize(),
+            beforeSend: function ( ) {
+                $('#gif').show();
+            },
             success : function( data ) {
                 $("#paymentForm")[0].reset();
-                $("#resultado").html(data);
                 $("#params-form")[0].reset();
+                $("#resultado").html(data);
                 $(".modal").modal('hide');
+                $('#gif').hide();
             },
             error   : function( xhr, err ) {
                 console.log(err);

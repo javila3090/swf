@@ -36,9 +36,13 @@ class RegisterController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('guest');
+        //$this->middleware('guest');
     }
 
+    protected function index()
+    {
+        return \View::make('auth.register');
+    }
     /**
      * Get a validator for an incoming registration request.
      *

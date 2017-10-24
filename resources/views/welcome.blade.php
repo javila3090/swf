@@ -125,6 +125,57 @@
             </div>
         </div>
     </div>
+
+    <div id="paymentPaypalModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Paypal Payment</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <form class="form-horizontal" method="POST" id="payment-form-paypal" role="form" action="{!! URL::route('addmoney.paypal') !!}" >
+                                {{ csrf_field() }}
+                                <input type="hidden" value="" name="phone_number" id="phone_number" required/>
+                                <input type="hidden" value="" name="id_frecuency" id="id_frecuency" required/>
+                                <input type="hidden" value="" name="amount" id="amount" required/>
+                                <div class="form-group{{ $errors->has('amount') ? ' has-error' : '' }}">
+                                    <label for="amount" class="col-md-4 control-label">Amount</label>
+
+                                    <div class="col-md-6">
+                                        <input id="amount" type="text" class="form-control" name="amount" value="{{ old('amount') }}" autofocus>
+
+                                        @if ($errors->has('amount'))
+                                            <span class="help-block">
+                                        <strong>{{ $errors->first('amount') }}</strong>
+                                    </span>
+                                        @endif
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="col-md-6 col-md-offset-4">
+                                        <button type="submit" class="btn btn-primary">
+                                            Pay with Paypal
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <span class="pull-left"><img src="{{ URL::asset('assets/images/paypal.png') }}" /></span>
+                    <button type="button" class="btn btn-info" id="open-pay-form-modal" data-dismiss="modal">Pay with credit card</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
     <!-- Modal -->
     <div id="paymentModal" class="modal fade" role="dialog">
         <div class="modal-dialog">
@@ -137,47 +188,57 @@
                 <div class="modal-body">
                     <div class="panel panel-default">
                         <div class="panel-body">
-                            {!! Form::open(['route' => 'addmoney.stripe', 'method' => 'post', 'id' => 'paymentForm']) !!}
-                            <input type="hidden" value="" name="code" id="code" required/>
-                            <input type="hidden" value="" name="phone_number" id="phone_number" required/>
-                            <input type="hidden" value="" name="id_frecuency" id="id_frecuency" required/>
-                            <input type="hidden" value="" name="amount" id="amount" required/>
-                            <!-- Email -->
-                            <div class="form-group">
-                                <div class="input-group">
-                                    <span class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span></span>
-                                    <input type="email" class="form-control" name="email" id="email" placeholder="Email" required autofocus />
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="input-group">
-                                    <span class="input-group-addon"><span class="glyphicon glyphicon-credit-card"></span></span>
-                                    <input type="number" class="form-control" name="cardNumber" id="cardNumber" placeholder="Card Number" required autofocus />
+                            <div class="row">
+                                <div class="col-md-6 col-md-offset-3 text-center">
+                                    <div id="gif" style="display: none;"><img src="{{URL::asset('assets/images/ripple.gif')}}"> Pay in process...</div>
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-xs-6 col-md-6">
+                                <div class="col-md-12">
+                                {!! Form::open(['route' => 'addmoney.stripe', 'method' => 'post', 'id' => 'paymentForm']) !!}
+                                    <input type="hidden" value="" name="phone_number" id="phone_number" required/>
+                                    <input type="hidden" value="" name="id_frecuency" id="id_frecuency" required/>
+                                    <input type="hidden" value="" name="amount" id="amount" required/>
+                                    <!-- Email -->
                                     <div class="form-group">
-                                        <input type="text" class="form-control" name="expire_date" id="expire_date" placeholder="Expire date" required />
+                                        <div class="input-group">
+                                            <span class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span></span>
+                                            <input type="email" class="form-control" name="email" id="email" placeholder="Email" required autofocus />
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="col-xs-6 col-md-6 pull-right">
                                     <div class="form-group">
-                                        <input type="number" maxlength="3" name="cvv" class="form-control" id="cvv" placeholder="CVV" required />
+                                        <div class="input-group">
+                                            <span class="input-group-addon"><span class="glyphicon glyphicon-credit-card"></span></span>
+                                            <input type="number" class="form-control" name="cardNumber" id="cardNumber" placeholder="Card Number" required autofocus />
+                                        </div>
                                     </div>
+                                    <div class="row">
+                                        <div class="col-xs-6 col-md-6">
+                                            <div class="form-group">
+                                                <input type="text" class="form-control" name="expire_date" id="expire_date" placeholder="Expire date" required />
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-6 col-md-6 pull-right">
+                                            <div class="form-group">
+                                                <input type="number" maxlength="3" name="cvv" class="form-control" id="cvv" placeholder="CVV" required />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-lg-4 col-lg-offset-4 col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3 col-xs-8 col-xs-offset-2">
+                                            <button type="submit" class="btn btn-primary btn-lg btn-block">Pay <span id="amountSpan"></span>,00 $</button>
+                                        </div>
+                                    </div>
+                                {!! Form::close() !!}
                                 </div>
                             </div>
-                            <div class="row">
-                                <div class="col-lg-4 col-lg-offset-4 col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3 col-xs-8 col-xs-offset-2">
-                                    <button type="submit" class="btn btn-primary btn-lg btn-block">Pay <span id="amountSpan"></span>,00 $</button>
-                                </div>
-                            </div>
-                            {!! Form::close() !!}
                         </div>
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <span class="pull-left"><img src="{{ URL::asset('assets/images/visa.png') }}" /></span>
+                    <span class="pull-left"><img src="{{ URL::asset('assets/images/mastercard.png') }}" /></span>
+                    <button type="button" class="btn btn-info" id="open-paypal-form" data-dismiss="modal">Pay with paypal</button>
                 </div>
             </div>
 

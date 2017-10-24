@@ -21,22 +21,24 @@
                             <div class="input-group-btn">
                                 <div class="btn-group">
                                     <button class="btn btn-default dropdown-toggle dropdown-button" type="button" data-toggle="dropdown">
-                                        <span>Country</span> <span class="caret"></span>
+                                        <span class="xs-text">Code</span> <span class="caret"></span>
                                     </button>
-                                    <ul class="dropdown-menu" style="max-height: 150px; max-width: 490px; overflow-x: hidden; overflow-y: scroll; cursor: pointer;" role="menu">
+                                    <ul class="dropdown-menu cellphone" role="menu">
                                         @foreach($codes as $code)
-                                            <li><a class="phone_code" onclick="fillInput('{{ $code->phonecode }}')">{{ $code->name }} + {{ $code->phonecode }}</a></li>
+                                            <li><a class="phone_code text-justify" onclick="fillInput('{{ $code->phonecode }}')"><img src="assets/images/flags/1x1/{{ strtoupper($code->iso) }}.svg" height="20" width="20"/> {{ $code->name }} + {{ $code->phonecode }}</a></li>
                                         @endforeach
                                     </ul>
                                 </div>
                             </div>
-                            <input type="text" name="cellphone" id="cellphone" class="form-control" />
+                            <span id="phone_code" class="input-group-addon xs-text"></span>
+                            <input type="text" name="cellphone" id="cellphone" class="form-control xs-text" />
+                            <input type="hidden" name="input_phone_code" id="input_phone_code" class="form-control xs-text" />
                         </div>
                     </div>
                     <button type="button" class="btn swButton" id="">Search</button>
-                    <label class="error" for="error_cell_phone" id="error_cell_phone"></label>
                 </div>
             </div>
+            <label class="error" for="error_cell_phone" id="error_cell_phone"></label>
         </div>
     </header>
     <div id="section-wrap">

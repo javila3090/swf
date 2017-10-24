@@ -33,7 +33,7 @@ class FactsController extends Controller
 
     public function listFacts(){
         $facts = Fact::all();
-        return \View::make('facts_list',  compact('facts'));
+        return \View::make('secure.facts_list',  compact('facts'));
     }
 
     public function store(Request $request){
@@ -94,7 +94,7 @@ class FactsController extends Controller
     public function edit($id)
     {
         $fact = Fact::findOrFail($id);
-        return view('edit', compact('fact'));
+        return view('secure.edit_fact', compact('fact'));
     }
 
     /**

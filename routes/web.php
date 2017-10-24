@@ -46,25 +46,26 @@ Route::get('addmoney/stripe', array('as' => 'addmoney.paywithstripe','uses' => '
 Route::post('addmoney/stripe', array('as' => 'addmoney.stripe','uses' => 'PaymentController@postPaymentWithStripe',));
 
 Auth::routes();
+
 Route::get('logout', 'Auth\LoginController@logout')->name('logout');
 
-Route::get('/secure/home', 'HomeController@index')->name('home');
+Route::get('/secure/home', 'HomeController@index')->name('secure_home');
+
+//Facts routes
 
 Route::get('/secure/list/facts', 'FactsController@listFacts')->name('list_facts');
 
+Route::get('fact/edit/{id}', ['as' => 'fact/edit','uses' => 'FactsController@edit']);
+
+Route::get('fact/delete/{id}', ['as' => 'fact/delete','uses' => 'FactsController@destroy']);
+
+Route::put('fact/update/{fact}', ['as' => 'fact/update', 'uses' => 'FactsController@update']);
+
+//Orders routes
+
 Route::get('/secure/list/orders', 'OrdersController@index')->name('list_orders');
 
-Route::get('fact/edit/{id}', [
-    'as' => 'fact/edit',
-    'uses' => 'FactsController@edit'
-]);
+Route::get('order/view/{id}', ['as' => 'order/view','uses' => 'OrdersController@viewDetail']);
 
-Route::get('fact/delete/{id}', [
-    'as' => 'fact/delete',
-    'uses' => 'FactsController@destroy'
-]);
+Route::get('secure/user/register', 'Auth\RegisterController@index')->name('user_register');
 
-Route::put('fact/update/{fact}', [
-    'as' => 'fact/update',
-    'uses' => 'FactsController@update'
-]);

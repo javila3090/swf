@@ -6,6 +6,11 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta property="og:url"           content="{{Request::url()}}" />
+    <meta property="og:type"          content="website" />
+    <meta property="og:title"         content="Star Wars Facts " />
+    <meta property="og:description"   content="Send anom facts" />
+    <meta property="og:image"         content="" />
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>Star Wars Facts </title>
@@ -26,6 +31,7 @@
 <body>
 
 <div class="nav-container container-fluid">
+
     <div class="navbar-header">
         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
             <span class="sr-only">Toggle navigation</span>
@@ -81,5 +87,6 @@
 <script type="text/javascript" src="{{ asset('assets/js/datatables.min.js') }}"></script>
 <script type="text/javascript" src="{{ asset('assets/js/mask.min.js') }}"></script>
 <script type="text/javascript" src="{{ asset('assets/js/custom.js') }}"></script>
+<script type="text/javascript" src="{{ asset('assets/js/facebook.js') }}"></script>
 </body>
 </html>

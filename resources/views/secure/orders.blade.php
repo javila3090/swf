@@ -34,23 +34,21 @@
                             <th>Frecuency</th>
                             <th>Quantity</th>
                             <th>Created</th>
-                            <th>Edit</th>
-                            <th>Delete</th>
+                            <th>Details</th>
                         </tr>
                     </thead>
                     <tbody>
-                    @foreach($orders as $order)
-                        <tr>
-                            <td style="width: auto;">{{ $order->id }}</td>
-                            <td style="width: auto;">{{ $order->email }}</td>
-                            <td style="width: auto;">{{ $order->phone_number }}</td>
-                            <td style="width: auto;">{{ $order->id_frecuency }}</td>
-                            <td style="width: auto;">{{ $order->quantity }}</td>
-                            <td style="width: auto;">{{ $order->created_at }}</td>
-                            <td><a href="#" title="Edit" class="btn btn-success btn-sm"><span class="glyphicon glyphicon-eye-open" ></span></a></td>
-                            <td><a href="#" onclick="return confirm('This record will be deleted. Are you sure?')" title="Delete" class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a></td>
-                        </tr>
-                    @endforeach
+                        @foreach($orders as $order)
+                            <tr>
+                                <td style="width: auto;">{{ $order->id }}</td>
+                                <td style="width: auto;">{{ $order->email }}</td>
+                                <td style="width: auto;">{{ $order->phone_number }}</td>
+                                <td style="width: auto;">{{ $order->id_frecuency }}</td>
+                                <td style="width: auto;">{{ $order->quantity }}</td>
+                                <td style="width: auto;">{{ $order->created_at }}</td>
+                                <td><a href="{{route('order/view', $order)}}" title="View details" class="btn btn-success btn-sm"><span class="glyphicon glyphicon-eye-open" ></span></a></td>
+                            </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>

@@ -10,6 +10,15 @@
 @extends('layouts.app')
 
 @section('content')
+    <div id="fb-root"></div>
+    <script>(function(d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s); js.id = id;
+            js.src = 'https://connect.facebook.net/es_EN/sdk.js#xfbml=1&version=v2.10&appId=2010997639157829';
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+    </script>
     <!-- Header -->
     <header class="masthead">
         <div class="container">
@@ -31,10 +40,12 @@
         </div>
         <div class="row">
             <div class="col-md-4 col-md-offset-4 text-center">
-                <a class="swButton btn btn-block" href="#form-sign-up"> SHARE THIS FACT </a>
+                <div class="swButton btn btn-block fb-share-button" data-href="http://swfacts.dev.com/facts" data-layout="button" data-size="large" data-mobile-iframe="true"><a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fswfacts.dev.com%2Ffacts&amp;src=sdkpreparse">Share</a></div>
             </div>
             <div class="col-md-4 col-md-offset-4 text-center">
-                OR
+                <div class="login-or">
+                    <hr class="hr-or">
+                </div>
             </div>
             <div class="col-md-4 col-md-offset-4 text-center">
                 <a class="swButton btn btn-block" href="#form-sign-up"> SIGN FRIENDS UP NOW!</a>

@@ -7,7 +7,7 @@
  */
 ?>
 
-        <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -76,37 +76,21 @@
                     <div class="menu_section">
                         <h3>General</h3>
                         <ul class="nav side-menu">
-                            <li><a href="{{url('secure/home')}}"><i class="fa fa-home"></i> Home </a>
+                            <li><a href="{{route('secure_home')}}"><i class="fa fa-home"></i> Home </a>
                             <li><a><i class="fa fa-bar-chart"></i> Stadistics  <span class="fa fa-chevron-left"></span></a>
                             </li>
                             <li><a href="{{route('list_orders')}}"><i class="fa fa-shopping-cart"></i> Orders <span class="fa fa-chevron-left"></span></a>
                             </li>
                             <li><a href="{{route('list_facts')}}"><i class="fa fa-send-o"></i> Facts <span class="fa fa-chevron-left"></span></a>
                             </li>
-
+                            <li><a href="{{route('user_register')}}"><i class="fa fa-user"></i> Users <span class="fa fa-chevron-left"></span></a>
+                            </li>
                             <!--<li><a href="javaasset:void(0)"><i class="fa fa-laptop"></i> Landing Page <span class="label label-success pull-right">Coming Soon</span></a></li>-->
                         </ul>
                     </div>
 
                 </div>
                 <!-- /sidebar menu -->
-
-                <!-- /menu footer buttons -->
-                <div class="sidebar-footer hidden-small">
-                    <a data-toggle="tooltip" data-placement="top" title="Settings">
-                        <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
-                    </a>
-                    <a data-toggle="tooltip" data-placement="top" title="FullScreen">
-                        <span class="glyphicon glyphicon-fullscreen" aria-hidden="true"></span>
-                    </a>
-                    <a data-toggle="tooltip" data-placement="top" title="Lock">
-                        <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
-                    </a>
-                    <a data-toggle="tooltip" data-placement="top" title="Logout" href="login.html">
-                        <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
-                    </a>
-                </div>
-                <!-- /menu footer buttons -->
             </div>
         </div>
 
@@ -125,14 +109,7 @@
                                 <span class=" fa fa-angle-down"></span>
                             </a>
                             <ul class="dropdown-menu dropdown-usermenu pull-right">
-                                <li><a href="javaasset:"> Profile</a></li>
-                                <li>
-                                    <a href="javaasset:">
-                                        <span class="badge bg-red pull-right">50%</span>
-                                        <span>Settings</span>
-                                    </a>
-                                </li>
-                                <li><a href="javaasset:">Help</a></li>
+                                <li><a href="/">Go to site</a></li>
                                 <li><a href="/logout"><i class="fa fa-sign-out pull-right"></i> Log Out</a></li>
                             </ul>
                         </li>
