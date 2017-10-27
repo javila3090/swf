@@ -35,7 +35,7 @@
                             <input type="hidden" name="input_phone_code" id="input_phone_code" class="form-control xs-text" />
                         </div>
                     </div>
-                    <button type="button" class="btn swButton" id="">Search</button>
+                    <button type="button" class="btn swButton" id="search_facts_sent" >Search</button>
                 </div>
             </div>
             <label class="error" for="error_cell_phone" id="error_cell_phone"></label>
@@ -43,8 +43,16 @@
     </header>
     <div id="section-wrap">
         <div class="row">
-            <div class="col-md-6 col-md-offset-3 jumbotron">
+            <div class="col-md-6 col-md-offset-3 text-center">
+                <div id="gif" style="display: none;"><img src="{{URL::asset('assets/images/ripple.gif')}}"> Search in progress...</div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-10 col-md-offset-1 jumbotron">
+                <div id="resultado">
 
+
+                </div>
             </div>
         </div>
     </div>

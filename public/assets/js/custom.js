@@ -18,6 +18,37 @@ $(document).ready(function(){
         });
     });
 
+    $("#search_facts_sent").click(function(){
+        if ($("#cellphone").val()=='') {
+            $("#cellphone").css("border-color", "#FF0000");
+            $("#cellphone").focus();
+            $("#error_cell_phone").text("* Phone number is required");
+        }else{
+            var code = $('input[name=input_phone_code]').val();
+            var phone_number = $('input[name=cellphone]').val();
+            var complete_phone_number = code+phone_number;
+            $("#cellphone").css("border-color", "#2eb82e");
+            $("#error_cell_phone").text("");
+            $.ajax({
+                url: 'search/facts/',
+                type: 'GET',
+                data: 'number='+complete_phone_number,
+                beforeSend: function () {
+                    $('#gif').show();
+                },
+                success : function( data ) {
+                    $('#gif').hide();
+                    $("#resultado").empty();
+                    $("#resultado").append(data);
+                },
+                error   : function( xhr, err ) {
+                    console.log(err);
+                }
+            });
+            return false;
+        }
+    });
+
     $("#open-pay-form").click(function(){
         if ($("#cellphone").val()=='') {
             $("#cellphone").css("border-color", "#FF0000");
@@ -236,6 +267,22 @@ function showFact() {
     $.ajax({
         url: 'show/facts',
         type: 'GET',
+        success : function( data ) {
+            $("#resultado").empty();
+            $("#resultado").append(data);
+        },
+        error   : function( xhr, err ) {
+            console.log(err);
+        }
+    });
+    return false;
+}
+
+function searchFactsSend(number) {
+    $.ajax({
+        url: 'show/facts',
+        type: 'GET',
+        data: number,
         success : function( data ) {
             $("#resultado").empty();
             $("#resultado").append(data);

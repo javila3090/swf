@@ -36,6 +36,20 @@ class FactsController extends Controller
         return \View::make('secure.facts_list',  compact('facts'));
     }
 
+    public function searchFacts(Request $request){
+        $number = $request->input('number');
+        $facts_sent = DB::table('facts_sent')
+            ->Join('orders','facts_sent.id_order','=', 'orders.id')
+            ->Join('facts','facts_sent.id_fact','=', 'facts.id')
+            ->select('orders.phone_number','facts.text')
+            ->where('orders.phone_number','=',$number)->get();
+  
+        foreach ($facts_sent as $fact_sent){
+            $view = "<div class='col-md-10 col-md-offset-1'>$fact_sent->phone_number</div>";
+        }
+        return $view;
+    }
+
     public function store(Request $request){
         $rules = array(
             'text' => 'required'
