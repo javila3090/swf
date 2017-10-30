@@ -41,13 +41,10 @@ class FactsController extends Controller
         $facts_sent = DB::table('facts_sent')
             ->Join('orders','facts_sent.id_order','=', 'orders.id')
             ->Join('facts','facts_sent.id_fact','=', 'facts.id')
-            ->select('orders.phone_number','facts.text')
+            ->select('orders.phone_number as phone_number','facts.text as text','facts_sent.created_at')
             ->where('orders.phone_number','=',$number)->get();
-  
-        foreach ($facts_sent as $fact_sent){
-            $view = "<div class='col-md-10 col-md-offset-1'>$fact_sent->phone_number</div>";
-        }
-        return $view;
+        $facts_sent=json_encode($facts_sent);
+        return $facts_sent;
     }
 
     public function store(Request $request){

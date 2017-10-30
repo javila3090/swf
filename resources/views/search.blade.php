@@ -51,7 +51,6 @@
             <div class="col-md-10 col-md-offset-1 jumbotron">
                 <div id="resultado">
 
-
                 </div>
             </div>
         </div>

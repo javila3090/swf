@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "601e002c1f5fa302da2e9a6029281fed",
+    "content-hash": "68f54e0255cb43932829563395275511",
     "packages": [
         {
             "name": "aloha/twilio",
@@ -2517,16 +2517,16 @@
         },
         {
             "name": "twilio/sdk",
-            "version": "4.12.0",
+            "version": "3.12.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/twilio/twilio-php.git",
-                "reference": "6e4b45fc3f8b56c088dfecf4bced76c712cb6182"
+                "reference": "d60ae45fc1b1f5072f793cd1cc51c886e007af08"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/twilio/twilio-php/zipball/6e4b45fc3f8b56c088dfecf4bced76c712cb6182",
-                "reference": "6e4b45fc3f8b56c088dfecf4bced76c712cb6182",
+                "url": "https://api.github.com/repos/twilio/twilio-php/zipball/d60ae45fc1b1f5072f793cd1cc51c886e007af08",
+                "reference": "d60ae45fc1b1f5072f793cd1cc51c886e007af08",
                 "shasum": ""
             },
             "require": {
@@ -2534,13 +2534,13 @@
             },
             "require-dev": {
                 "mockery/mockery": ">=0.7.2",
-                "phpunit/phpunit": "4.5.*"
+                "phpunit/phpunit": "3.7.*"
             },
             "type": "library",
             "autoload": {
-                "files": [
-                    "Services/Twilio.php"
-                ]
+                "psr-0": {
+                    "Services_Twilio": ""
+                }
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
@@ -2563,7 +2563,7 @@
                 "sms",
                 "twilio"
             ],
-            "time": "2016-09-01T18:42:52+00:00"
+            "time": "2013-09-18T16:10:14+00:00"
         },
         {
             "name": "vlucas/phpdotenv",

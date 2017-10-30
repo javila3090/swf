@@ -38,8 +38,20 @@ $(document).ready(function(){
                 },
                 success : function( data ) {
                     $('#gif').hide();
-                    $("#resultado").empty();
-                    $("#resultado").append(data);
+                    console.log(data);
+                    data = JSON.parse(data);
+                    var html = "";
+                    if(data.length>0){
+                        for (var i = 0; i < data.length; i++) {
+                            var j=i+1;
+                            html = html + "<div class='row'><div class='col-md-12 text-left'><span><b>Fact sent #"+j+"</b></span></div> </div> <div class='row'><div class='col-md-12'><hr style='border: 1px solid grey'></div></div><div class='row'><div class='col-md-12 text-left'><b>Sent at: </b><span>" + data[i].created_at + "</span></div></div><br><div class='row'><div class='col-md-12 text-left'><b>Fact: </b><span>"+ data[i].text + "</span></div></div><div class='row'><div class='col-md-12'><hr style='border: 2px solid gold'></div></div>";
+                        };
+                        //var header = "<div class='row'><div class='col-md-10 col-md-offset-1'>"+data[i].phone_number+"</div></div><div class='row'><div class='col-md-10 col-md-offset-1'><hr style='border: 2px solid gold'></div></div>";
+                        $("#resultado").empty();
+                        $("#resultado").html(html);
+                    }else{
+                        $("#resultado").html('<span style=""color: red !important; font-size: 18px; font-weight: bold;">There are not results to show</span>');
+                    }
                 },
                 error   : function( xhr, err ) {
                     console.log(err);

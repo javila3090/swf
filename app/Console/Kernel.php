@@ -13,7 +13,10 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
-        //
+        Commands\SendSmsFourHour::class,
+        Commands\SendSmsTwoHour::class,
+        Commands\SendSmsOneHour::class,
+        Commands\SendSmsOneDay::class,
     ];
 
     /**
@@ -24,8 +27,21 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        // $schedule->command('inspire')
-        //          ->hourly();
+        //Send 4 sms per hour
+        $schedule->command('send:smsFourHour')
+            ->cron('15 0-23 * * * *');
+
+        //Send 2 sms per hour
+        $schedule->command('send:smsTwoHour')
+            ->everyThirtyMinutes();
+
+        //Send 1 sms per hour
+        $schedule->command('send:smsOneHour')
+            ->hourly();
+
+        //Send 1 sms per day
+        $schedule->command('send:smsOneDay')
+            ->daily();
     }
 
     /**
