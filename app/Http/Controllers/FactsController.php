@@ -37,7 +37,7 @@ class FactsController extends Controller
     }
 
     public function searchFacts(Request $request){
-        $number = $request->input('number');
+        $number = "+".$request->input('number');
         $facts_sent = DB::table('facts_sent')
             ->Join('orders','facts_sent.id_order','=', 'orders.id')
             ->Join('facts','facts_sent.id_fact','=', 'facts.id')

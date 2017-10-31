@@ -102,7 +102,7 @@ class PaymentController extends Controller
                     }
                     $order = new Order(); // Creando el objeto del modelo
                     $order->email = $request->input('email');
-                    $order->phone_number = $request->input('phone_number');
+                    $order->phone_number = "+".$request->input('phone_number');
                     $order->id_frecuency = $request->input('id_frecuency');
                     $order->quantity = $quantity;
                     $order -> save();

@@ -14,8 +14,8 @@
     <header class="masthead">
         <div class="container">
             <div class="row">
-                <div class="form-group  col-lg-4 col-lg-offset-4 col-md-4 col-md-offset-4 col-xs-12 search">
-                    <label for="number" class="header-ask">Enter a number to see the Star Wars Facts that were sent</label>
+                <div class="form-group  col-lg-4 col-lg-offset-4 col-md-4 col-md-offset-4 col-sm-8 col-sm-offset-2 col-xs-12 search">
+                    <label for="number" class="header-ask" style="font-size: 14px;">Enter a number to see the Star Wars Facts that were sent</label>
                     <div class="form-group">
                         <div class="input-group">
                             <div class="input-group-btn">
