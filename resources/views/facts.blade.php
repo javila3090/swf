@@ -48,7 +48,7 @@
                 </div>
             </div>
             <div class="col-md-4 col-md-offset-4 text-center">
-                <a class="swButton btn btn-block" href="#form-sign-up"> SIGN FRIENDS UP NOW!</a>
+                <a class="swButton btn btn-block" href="{{route('/')}}"> SIGN FRIENDS UP NOW!</a>
             </div>
         </div>
     </div>
