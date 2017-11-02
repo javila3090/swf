@@ -25,7 +25,7 @@
                     </div>
                 @endif
 
-                <table id="datatable" class="table table-striped table-bordered">
+                <table id="datatable" class="table table-striped table-bordered text-center">
                     <thead>
                         <tr>
                             <th>#</th>

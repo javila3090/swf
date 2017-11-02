@@ -18,6 +18,8 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>Send Star Wars Facts </title>
+    <link rel="shortcut icon" href="{{  URL::asset('assets/images/sw.ico') }}">
+    {!! Charts::assets() !!}
     <link rel="stylesheet" href="{{ URL::asset('assets/template/vendors/bootstrap/dist/css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ URL::asset('assets/template/vendors/font-awesome/css/font-awesome.min.css') }}">
     <link rel="stylesheet" href="{{ URL::asset('assets/template/vendors/nprogress/nprogress.css') }}">
@@ -77,7 +79,11 @@
                         <h3>General</h3>
                         <ul class="nav side-menu">
                             <li><a href="{{route('secure_home')}}"><i class="fa fa-home"></i> Home </a>
-                            <li><a><i class="fa fa-bar-chart"></i> Stadistics  <span class="fa fa-chevron-left"></span></a>
+                            <li><a href="#"><i class="fa fa-bar-chart"></i> Stadistics <span class="fa fa-chevron-left"></span></a>
+                                <ul class="nav child_menu">
+                                    <li><a href="{{route('orders_by_month')}}">Orders by Month</a></li>
+                                    <li><a href="{{route('orders_by_year')}}">Orders by Year</a></li>
+                                </ul>
                             </li>
                             <li><a href="{{route('list_orders')}}"><i class="fa fa-shopping-cart"></i> Orders <span class="fa fa-chevron-left"></span></a>
                             </li>
@@ -187,6 +193,7 @@
 <script src="{{ asset('assets/template/vendors/vendors/jszip/dist/jszip.min.js') }}"></script>
 <script src="{{ asset('assets/template/vendors/pdfmake/build/pdfmake.min.js') }}"></script>
 <script src="{{ asset('assets/template/vendors/pdfmake/build/vfs_fonts.js') }}"></script>
+<script src="{{ asset('assets/template/vendors/validator/validator.js') }}"></script>
 
 </body>
 </html>
