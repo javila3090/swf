@@ -81,6 +81,7 @@
                             <li><a href="{{route('secure_home')}}"><i class="fa fa-home"></i> Home </a>
                             <li><a href="#"><i class="fa fa-bar-chart"></i> Stadistics <span class="fa fa-chevron-left"></span></a>
                                 <ul class="nav child_menu">
+                                    <li><a href="{{route('stadisticts_all')}}">All stadisticts</a></li>
                                     <li><a href="{{route('orders_by_month')}}">Orders by Month</a></li>
                                     <li><a href="{{route('orders_by_year')}}">Orders by Year</a></li>
                                 </ul>

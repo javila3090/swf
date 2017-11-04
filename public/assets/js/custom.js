@@ -18,6 +18,14 @@ $(document).ready(function(){
         });
     });
 
+    $("#search_by_dates").click(function(e){
+        e.preventDefault();
+        
+
+
+
+    });
+
     $("#search_facts_sent").click(function(){
         if ($("#cellphone").val()=='') {
             $("#cellphone").css("border-color", "#FF0000");

@@ -75,7 +75,7 @@
                         <div class="col-md-4">
                             <label>Current status</label>
                             <div class="input-group">
-                                <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                                <span class="input-group-addon"><i class="fa fa-refresh"></i></span>
                                 <input class="form-control" disabled="disabled" value="{{$order->status}}">
                             </div>
                         </div>
