@@ -84,6 +84,8 @@ Route::get('user/delete/{id}', ['as' => 'user/delete','uses' => 'Auth\RegisterCo
 //Statitics routes
 Route::get('secure/stadisticts/all', 'SecureController@stadistictsAll')->name('stadisticts_all');
 
+Route::get('secure/stadisticts/all/by/date', 'SecureController@stadistictsByDate')->name('stadisticts_by_date');
+
 Route::get('secure/stadisticts/orders/by/month', 'SecureController@ordersByMonth')->name('orders_by_month');
 
 Route::get('secure/stadisticts/orders/by/year', 'SecureController@ordersByYear')->name('orders_by_year');

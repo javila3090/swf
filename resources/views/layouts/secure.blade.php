@@ -145,6 +145,7 @@
     </div>
 </div>
 <script type="text/javascript" src="{{ asset('assets/template/vendors/jquery/dist/jquery.min.js') }}"></script>
+
 <script type="text/javascript" src="{{ asset('assets/template/vendors/bootstrap/dist/js/bootstrap.min.js') }}"></script>
 <script type="text/javascript" src="{{ asset('assets/template/vendors/fastclick/lib/fastclick.js') }}"></script>
 <script type="text/javascript" src="{{ asset('assets/template/vendors/nprogress/nprogress.js') }}"></script>
@@ -191,7 +192,7 @@
 <script src="{{ asset('assets/template/vendors/datatables.net-responsive/js/dataTables.responsive.min.js') }}"></script>
 <script src="{{ asset('assets/template/vendors/datatables.net-responsive-bs/js/responsive.bootstrap.js') }}"></script>
 <script src="{{ asset('assets/template/vendors/datatables.net-scroller/js/dataTables.scroller.min.js') }}"></script>
-<script src="{{ asset('assets/template/vendors/vendors/jszip/dist/jszip.min.js') }}"></script>
+<script src="{{ asset('assets/template/vendors/jszip/dist/jszip.min.js') }}"></script>
 <script src="{{ asset('assets/template/vendors/pdfmake/build/pdfmake.min.js') }}"></script>
 <script src="{{ asset('assets/template/vendors/pdfmake/build/vfs_fonts.js') }}"></script>
 <script src="{{ asset('assets/template/vendors/validator/validator.js') }}"></script>

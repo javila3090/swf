@@ -18,12 +18,30 @@ $(document).ready(function(){
         });
     });
 
-    $("#search_by_dates").click(function(e){
+    $("#stadisticts-by-date").submit(function(e){
         e.preventDefault();
-        
-
-
-
+        var date_array = $('input[name=date]').val();
+        $.ajax({
+            url: 'secure/stadisticts/all/by/date',
+            type: 'GET',
+            data: 'date='+date_array,
+            beforeSend: function ( ) {
+                $("#resultado").html('');
+                $('#gif').show();
+            },
+            success : function( data ) {
+                $("#stadisticts-by-date")[0].reset();
+                data = JSON.parse(data);
+                console.log(data);
+                alert(data);
+                $("#resultado").html(data);
+                $('#gif').hide();
+            },
+            error   : function( xhr, err ) {
+                console.log(err);
+            }
+        });
+        return false;
     });
 
     $("#search_facts_sent").click(function(){

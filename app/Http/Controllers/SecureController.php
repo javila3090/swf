@@ -33,8 +33,27 @@ class SecureController extends Controller
      */
     public function stadistictsAll(){
 
-
         return view('secure.stadisticts.general');
+    }
+
+    /**
+     * @param Request $request
+     * @return string
+     */
+    public function stadistictsByDate(Request $request){
+        $date_explode = explode("-", $request->input('date'));
+        $from=trim($date_explode[0]);
+        $to=trim($date_explode[1]);
+        $from=date('Y-m-d', strtotime($from));
+        $to =date('Y-m-d', strtotime($to));
+        $stadistics = DB::table('orders')
+            ->join('quantity', 'orders.quantity', '=', 'quantity.quantity')
+            ->leftjoin('facts_sent', 'orders.id', '=', 'facts_sent.id_order')
+            ->select(DB::raw('SUM(quantity.cost) as Profit'),DB::raw('COUNT(orders.id) as Orders'),DB::raw('COUNT(facts_sent.id) as Facts'))
+            ->whereBetween('orders.created_at',array($from,$to))
+            ->first();
+        $stadistics=json_encode($stadistics);
+        return $stadistics;
     }
 
     /**
