@@ -17,8 +17,7 @@
             </div>
             <div class="well" style="overflow: auto">
                 <div class="col-md-6">
-                    Select a date range
-
+                    <p><b>Select a date range</b></p>
                         <fieldset>
                             <div class="control-group">
                                 <div class="controls">
@@ -54,7 +53,9 @@
                         console.log(data);
                         $('#gif').hide();
                         $.each(data, function(index, element) {
-                            $('#resultado').append('<div class="col-md-4 col-sm-12 col-xs-12 widget widget_tally_box">\n' +
+                            if(element===null){element=0}
+                            if(index==='Profit'){element=element+" $"}
+                            $('#resultado').append('<div class="col-md-4 col-sm-12 col-xs-12 widget widget_tally_box text-center">\n' +
                                 '                    <div class="x_panel ui-ribbon-container fixed_height_390">\n' +
                                 '                        <div class="x_title">\n' +
                                 '                            <h2>'+index+'</h2>\n' +
@@ -62,7 +63,7 @@
                                 '                        </div>\n' +
                                 '                        <div class="x_content">\n' +
                                 '                            <div style="text-align: center; margin-bottom: 17px">\n' +
-                                '                              <span class="chart" data-percent="86"><h1>'+element+'</h1>\n' +
+                                '                              <span class="chart" data-percent=""><h1>'+element+'</h1>\n' +
                                 '                              </span>\n' +
                                 '                            </div>\n' +
                                 '                        </div>\n' +
